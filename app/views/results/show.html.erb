@@ -1,2 +1,77 @@
-<h1>Results#show</h1>
-<p>Find me in app/views/results/show.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8" />
+    	<title>Results</title>
+    	<%= javascript_include_tag 'chart', 'data-turbolinks-track' => true %>
+  	</head>
+  	<body>
+		<nav class="top-bar" data-topbar role="navigation">
+		  <ul class="title-area">
+		    <li class="name">
+		      <h1><a href="#">D or F?</a></h1>
+		    </li>
+		     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+		    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		  </ul>
+
+		  <section class="top-bar-section">
+		    <!-- Right Nav Section -->
+		    <ul class="right">
+		      <li class="active"><a href="#">Right Button Active</a></li>
+		      <li class="has-dropdown">
+		        <a href="#">Right Button Dropdown</a>
+		        <ul class="dropdown">
+		          <li><a href="#">First link in dropdown</a></li>
+		          <li class="active"><a href="#">Active link in dropdown</a></li>
+		        </ul>
+		      </li>
+		    </ul>
+
+		    <!-- Left Nav Section -->
+		    <ul class="left">
+		      <li><a href="#">Left Nav Button</a></li>
+		    </ul>
+		  </section>
+		</nav>
+
+		<h1>Results#show</h1>
+		<p>Find me in app/views/results/show.html.erb</p>
+		<div>Graph shit  http://www.chartjs.org/</div>
+		<table style="margin-left: auto; margin-right: auto;">
+			<caption>I'm Diamond in League</caption>
+		  	<thead>
+		    	<tr>
+		      		<th width="150">Key Used for Flash</th>
+		      		<th width="150">Games</th>
+		      		<th width="150">Wins</th>
+		      		<th width="150">Losses</th>
+		      		<th width="150">Win Percentage</th>
+		    	</tr>
+		  	</thead>
+		  	<tbody>
+		    	<tr>
+		     		<td>D</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		    	</tr>
+		    	<tr>
+		      		<td>F</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		    	</tr>
+		    	<tr>
+		      		<td>No Flash</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		      		<td>Content Goes Here</td>
+		    	</tr>
+		  	</tbody>
+		</table>
+	</body>
+</html>

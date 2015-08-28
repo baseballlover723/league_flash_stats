@@ -1,4 +1,4 @@
-class ChampController < ApplicationController
+class ChampionController < ApplicationController
   def show
   end
 

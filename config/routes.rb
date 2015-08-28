@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'champ/show'
+  get 'champion/show'
 
-  get 'champ/index'
+  get 'champion/index'
 
-  get 'champ/create'
+  get 'champion/create'
 
   get 'results/show'
 

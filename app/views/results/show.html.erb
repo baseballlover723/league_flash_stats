@@ -3,7 +3,6 @@
   	<head>
     	<meta charset="utf-8" />
     	<title>Results</title>
-    	<%= javascript_include_tag 'chart', 'data-turbolinks-track' => true %>
   	</head>
   	<body>
 		<nav class="top-bar" data-topbar role="navigation">
@@ -38,6 +37,9 @@
 		<h1>Results#show</h1>
 		<p>Find me in app/views/results/show.html.erb</p>
 		<div>Graph shit  http://www.chartjs.org/</div>
+
+		<canvas id="chart" width="600"></canvas>
+
 		<table style="margin-left: auto; margin-right: auto;">
 			<caption>I'm Diamond in League</caption>
 		  	<thead>

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'champ/show'
+
+  get 'champ/index'
+
+  get 'champ/create'
+
+  get 'results/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

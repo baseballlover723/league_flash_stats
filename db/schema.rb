@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20150828195742) do
   end
 
   create_table "champions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "ranks", force: :cascade do |t|

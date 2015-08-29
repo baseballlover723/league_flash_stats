@@ -1,6 +1,26 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
+    getLocation();
+    
+    function showPosition(position) {
+        getWeather(position.coords.latitude, position.coords.longitude);
+    }
+
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else
+        {
+            alert("Geolocation is not supported by this browser. Will not be able to display weather widget.");
+        }
+    }
+
+    
+
     var data = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [

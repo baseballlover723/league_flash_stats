@@ -97,6 +97,10 @@ h1{
 	background-color: #e0e0e0;
 }
 
+#champsDiv h3{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
 #champsTitle{
 	display: block;
 	text-align: center;
@@ -123,12 +127,13 @@ h1{
 #footer{
 	height: 48px;
 	width: 100%;
-	background-color: #e0e0e0;
+	background-color: #00B2EE;
 	position: absolute;
 	bottom: 0;
 }
 
 #foot{
+	color: white;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

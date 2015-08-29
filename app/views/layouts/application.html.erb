@@ -14,7 +14,7 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "D or F?" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -26,15 +26,27 @@
     <nav id="nav" class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">D or F?</a></h1>
+          <h1><%= link_to "D or F?", champion_index_path %></h1>
         </li>
       </ul>
 
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-          <li><a href="https://github.com/baseballlover723">Phil's Github</a></li>
-          <li><a href="https://github.com/Maast3r">Andrew's Github</a></li>
+          <li class="has-dropdown">
+            <a href="#">Philip Ross</a>
+            <ul class="dropdown">
+              <li><a href="https://www.linkedin.com/pub/philip-ross/a5/569/575">Philip's LinkedIn</a></li>
+              <li><a href="https://github.com/baseballlover723">Philip's GitHub</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="#">Andrew Ma</a>
+            <ul class="dropdown">
+              <li><a href="https://www.linkedin.com/in/softwarelover">Andrew's LinkedIn</a></li>
+              <li><a href="https://github.com/Maast3r">Andrew's GitHub</a></li>
+              <li><a href="http://www.rose-hulman.edu/~maas/">Andrew's Website</a></li>
+            </ul>
           </li>
         </ul>
 
@@ -54,7 +66,10 @@
     <br /><br />
     <div id="footer">
       <div id="foot" class="row">
-        <div class="small-9 small-centered columns"> D or F? is not endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
+        <span class="small-9 small-centered columns">
+          <span width="50%">If you find any bugs with D or F?, please email them to maastergotmail@gmail.com or .</span>
+          <span>D or F? is not endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</span>
+        </span>
       </div>
     </div>
 

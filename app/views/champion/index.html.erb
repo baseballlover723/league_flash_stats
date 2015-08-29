@@ -22,7 +22,7 @@
 			<!-- <a href="#" class="champPic" style="display: block">
 				<img src="<%= @riot_path + champion.img %>"/></a> -->
 			<%= link_to(image_tag(@riot_path + champion.img), champion_show_path) %>
-			<%= link_to champion.name, champion_show_path, { :class=>"champName" }  %>
+			<%= link_to champion.name, champion_show_path(champion), { :class=>"champName" }  %>
 		</span>
 		<% end %>
 	</div>

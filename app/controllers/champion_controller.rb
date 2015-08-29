@@ -3,6 +3,7 @@ class ChampionController < ApplicationController
   end
 
   def index
+    @champions = Champion.all
   end
 
   def create

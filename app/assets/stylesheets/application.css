@@ -62,7 +62,7 @@ h1{
 #picture{
 	background-color: black;
 	width: 1150px;
-	height: 700px;
+	height: 660px;
 	background-image: url("/assets/images/finger.png");
 	background-repeat: no-repeat;
   	/*background-size: cover;*/
@@ -94,7 +94,12 @@ h1{
 }
 
 #champsDiv{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	background-color: #e0e0e0;
+}
+
+#champsDiv h3{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 #champsTitle{
@@ -123,15 +128,34 @@ h1{
 #footer{
 	height: 48px;
 	width: 100%;
-	background-color: #e0e0e0;
+	background-color: #00B2EE;
 	position: absolute;
 	bottom: 0;
 }
 
 #foot{
+	color: white;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 12px;
 	bottom: 0;
+}
+
+#weatherArea{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+  	width: 100%;
+  	border-style: solid;
+  	border-width: medium;
+ 	border-color: #00B2EE;
+ 	display: inline-block;
+}
+
+#weatherArea h3{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: center;
+}
+
+#greatDay{
+	color: #32cd32;
 }

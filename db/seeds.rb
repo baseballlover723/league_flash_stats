@@ -1,3 +1,5 @@
+keys = ENV['RIOT_API_KEYS'].split(" ")
+
 base_champion_request = "global.api.pvp.net"
 champion_request_path = "/api/lol/static-data/na/v1.2/champion"
 

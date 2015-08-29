@@ -17,7 +17,6 @@
 //= require foundation
 
 $(document).foundation();
-$(function(){ $(document).foundation(); });
 
 //get weather information from the openweathermap api and display it with a widget
 function getWeather(latitude, longitude){

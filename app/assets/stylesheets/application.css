@@ -13,9 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+ *{
+ 	margin: 0;
+ }
+
+html{
+	min-height: 100%;
+}
+
 body{
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	background: #f9f9f9;
+	min-height: 100%;
 }
 
 h1{
@@ -73,9 +83,28 @@ h1{
 	margin-right: auto;
 }
 
+#wrapper{
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+}
+
+.push{
+	height: 48px;
+}
+
+#footer{
+	height: 48px;
+	width: 100%;
+	background-color: #e0e0e0;
+	position: absolute;
+	bottom: 0;
+}
+
 #foot{
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 12px;
+	bottom: 0;
 }

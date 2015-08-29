@@ -40,17 +40,22 @@
 
         <!-- Left Nav Section -->
         <ul class="left">
-          <li><a href="#">Champions</a></li>
+           <li><%= link_to "Champions List", champion_index_path %></li>
           <li><a href="#">Overall Results</a></li>
         </ul>
       </section>
     </nav>
 
-    <%= yield %>
-
-    <br />
-    <div id="foot" class="row">
-      <div class="small-9 small-centered columns"> D or F? is not endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
+    <div id="wrapper">
+      <%= yield %>
+      <div class="push"></div>
+    </div>
+    
+    <br /><br />
+    <div id="footer">
+      <div id="foot" class="row">
+        <div class="small-9 small-centered columns"> D or F? is not endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</div>
+      </div>
     </div>
 
     <%= javascript_include_tag "application" %>

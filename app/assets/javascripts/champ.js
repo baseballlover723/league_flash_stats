@@ -11,7 +11,14 @@ $( document ).ready(function() {
     {
         if (navigator.geolocation)
         {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            if(document.getElementById("currentTemp"))
+            {
+                console.log("already there");
+            }
+            else
+            {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
         }
         else
         {

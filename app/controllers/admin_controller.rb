@@ -1,4 +1,6 @@
 require 'csv'
+require 'concurrent'
+
 class AdminController < ApplicationController
   @@polling = false
   @@base_request = "na.api.pvp.net"
@@ -20,7 +22,7 @@ class AdminController < ApplicationController
     puts "starting polling"
     index
     render action: 'index'
-    poll
+    Concurrent::Future.execute { poll }
   end
 
   def stop_polling
@@ -35,38 +37,45 @@ class AdminController < ApplicationController
     puts "polling"
     while @@polling do
       keys.each do |key|
+        match_id = get_next_match_id
         match_uri = URI::HTTPS.build(host: @@base_request,
-                                     path: @@request_path + get_next_match_id,
+                                     path: @@request_path + match_id,
                                      query: {api_key: key}.to_query)
+        puts "polling match id: #{match_id}"
         response = HTTParty.get(match_uri, verify: false).parsed_response
-        response["participants"].each do |participant|
-          rank = participant["highestAchievedSeasonTier"].downcase
-          champion_id = participant["championId"]
-          lane = parse_lane participant["timeline"]["lane"].downcase
-
-          won = participant["stats"]["winner"]
-          flash_on_d = participant["spell1Id"] == 4
-          flash_on_f = participant["spell2Id"] == 4
-
-
-          has_flash = flash_on_d || flash_on_f
-
-          champion_lane = ChampionLane.find_by(champion_id: champion_id, lane: lane)
-          rank = Rank.find_by(champion_lane: champion_lane, rank: rank, has_flash: has_flash, flash_on_f: flash_on_f)
-          if won
-            rank.wins += 1
-          else
-            rank.losses += 1
-          end
-          rank.save!
-        end
-        return
+        handle_response response
+        sleep 10
       end
     end
+    puts "done polling"
   end
 
   def get_next_match_id
     @@match_id.to_s
+  end
+
+  def handle_response(response)
+    response["participants"].each do |participant|
+      rank = participant["highestAchievedSeasonTier"].downcase
+      champion_id = participant["championId"]
+      lane = parse_lane participant["timeline"]["lane"].downcase
+
+      won = participant["stats"]["winner"]
+      flash_on_d = participant["spell1Id"] == 4
+      flash_on_f = participant["spell2Id"] == 4
+
+
+      has_flash = flash_on_d || flash_on_f
+
+      champion_lane = ChampionLane.find_by(champion_id: champion_id, lane: lane)
+      rank = Rank.find_by(champion_lane: champion_lane, rank: rank, has_flash: has_flash, flash_on_f: flash_on_f)
+      if won
+        rank.wins += 1
+      else
+        rank.losses += 1
+      end
+      rank.save!
+    end
   end
 
   def parse_lane(lane)

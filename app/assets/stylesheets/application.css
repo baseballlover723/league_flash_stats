@@ -42,15 +42,15 @@ h1{
 }
 
 #nav{
-	background: #000067;
+	background: #00B2EE;
 }
 
 #nav li{
-	background: #000067;
+	background: #00B2EE;
 }
 
 #nav a{
-	background: #000067;
+	background: #00B2EE;
 }
 
 
@@ -94,7 +94,12 @@ h1{
 }
 
 #champsDiv{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	background-color: #e0e0e0;
+}
+
+#champsDiv h3{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 #champsTitle{
@@ -123,7 +128,7 @@ h1{
 #footer{
 	height: 48px;
 	width: 100%;
-	background-color: #e0e0e0;
+	background-color: #00B2EE;
 	position: absolute;
 	bottom: 0;
 }

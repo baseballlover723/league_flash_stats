@@ -13,3 +13,98 @@
  *= require_tree .
  *= require_self
  */
+
+ *{
+ 	margin: 0;
+ }
+
+html{
+	min-height: 100%;
+}
+
+body{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	background: #f9f9f9;
+	min-height: 100%;
+}
+
+h1{
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+::selection{
+	background: purple;
+	color: white;
+}
+
+#nav{
+	background: #000067;
+}
+
+#nav li{
+	background: #000067;
+}
+
+#nav a{
+	background: #000067;
+}
+
+
+#jumbo{
+	width: 100%;
+	background-color: black;
+}
+
+#picture{
+	background-color: black;
+	width: 1150px;
+	height: 700px;
+	background-image: url("/assets/images/finger.png");
+	background-repeat: no-repeat;
+  	/*background-size: cover;*/
+  	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	text-align: center;
+}
+
+#picture h1{
+	color: #00B2EE;
+	text-shadow: 1px 1px 12px #000000;
+}
+
+#twokinds{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#wrapper{
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+}
+
+.push{
+	height: 48px;
+}
+
+#footer{
+	height: 48px;
+	width: 100%;
+	background-color: #e0e0e0;
+	position: absolute;
+	bottom: 0;
+}
+
+#foot{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 12px;
+	bottom: 0;
+}

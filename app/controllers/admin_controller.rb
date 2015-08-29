@@ -1,5 +1,7 @@
+require 'csv'
 class AdminController < ApplicationController
   @@polling = false
+
   def index
     @start_stop_string = @@polling ? "Stop" : "Start"
   end
@@ -15,6 +17,7 @@ class AdminController < ApplicationController
     puts "starting polling"
     index
     render action: 'index'
+    poll
   end
 
   def stop_polling
@@ -24,4 +27,17 @@ class AdminController < ApplicationController
     index
     render action: 'index'
   end
+
+  def poll
+    puts "polling"
+    # while @@polling do
+    #   recent_posts = HTTParty.get "http://www.example.org/?json=get_recent_posts"
+    #   puts recent_posts.status, recent_posts.count
+    #
+    #   recent_posts.posts.each do |post|
+    #     puts post.title #guessing
+    #   end
+    # end
+  end
 end
+

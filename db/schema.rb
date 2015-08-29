@@ -23,12 +23,11 @@ ActiveRecord::Schema.define(version: 20150828195742) do
   add_index "champion_lanes", ["champion_id"], name: "index_champion_lanes_on_champion_id", using: :btree
 
   create_table "champions", force: :cascade do |t|
-    t.integer  "champion_id", limit: 4
-    t.string   "name",        limit: 255
-    t.string   "title",       limit: 255
-    t.string   "img",         limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",       limit: 255
+    t.string   "title",      limit: 255
+    t.string   "img",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "ranks", force: :cascade do |t|

@@ -16,3 +16,7 @@
 !/log/.keep
 /tmp
 .idea
+keys.csv
+
+# Ignore application configuration
+/config/application.yml

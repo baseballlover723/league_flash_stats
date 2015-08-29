@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'champion/index', to: 'champion#index', as: :champion_index
   get 'champion/:id', to: 'champion#show', as: :champion_show
 
-  get 'champion/:id', to: 'champion#show', as: :champion_show
   get 'champion/index'
   get 'champion/create'
 

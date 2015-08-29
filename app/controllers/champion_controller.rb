@@ -1,5 +1,6 @@
 class ChampionController < ApplicationController
   def show
+  	@riot_path = "https://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/"
   	@champion = Champion.find(params.require(:id))
   	puts @champion.as_json
   end

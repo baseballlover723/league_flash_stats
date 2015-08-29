@@ -4,14 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def keys
-    return @@keys if @@keys.present?
-    puts "gen keys"
-    @@keys = []
-    csv_text = File.read('keys.csv')
-    csv = CSV.parse(csv_text)
-    csv.each do |key|
-      @@keys << key[0]
-    end
-    @@keys
+    ENV['RIOT_API_KEYS'].split(" ")
   end
 end

@@ -20,7 +20,7 @@ class AdminController < ApplicationController
   def stop_polling
     puts "not polling" and return unless @@polling
     @@polling = false
-    puts "stoping polling"
+    puts "stopping polling"
     index
     render action: 'index'
   end

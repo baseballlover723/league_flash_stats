@@ -1,11 +1,6 @@
 <h1>Admin#index</h1>
 <p>Find me in app/views/admin/index.html.erb</p>
 
-<%= form_tag("/search", method: "post") do %>
-  <%= submit_tag("Start Polling") %>
+<%= form_tag do %>
+  <%= submit_tag("#{@start_stop_string} Polling") %>
 <% end %>
-
-<%= form_tag("/search", method: "post") do %>
-  <%= submit_tag("Polling Stop") %>
-<% end %>
-<% 5 %>

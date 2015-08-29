@@ -1,5 +1,6 @@
 keys = ENV['RIOT_API_KEYS'].split(" ")
 
+RANKS = %w(unranked bronze, silver, gold, platinum diamond master challenger)
 base_champion_request = "global.api.pvp.net"
 champion_request_path = "/api/lol/static-data/na/v1.2/champion"
 
@@ -14,7 +15,7 @@ def createRanks(champion_lane)
   [true, false].each do |has_flash|
     [true, false].each do |flash_on_f|
       return if !has_flash && !flash_on_f
-      %w(bronze, silver, gold, platinum diamond master challenger).each do |rank|
+      RANKS.each do |rank|
         Rank.create(wins: 0, losses: 0, champion_lane: champion_lane,
                     has_flash: has_flash, flash_on_f: flash_on_f, rank: rank)
       end

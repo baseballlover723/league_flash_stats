@@ -23,7 +23,7 @@ function getWeather(latitude, longitude){
 	console.log('getting weather');
   var weather = {};
   $.ajax({
-    url: 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude,
+    url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude,
     type : 'GET',
     dataType : 'json',
     data : {

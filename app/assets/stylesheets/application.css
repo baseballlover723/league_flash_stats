@@ -93,6 +93,34 @@ h1{
 	height: 48px;
 }
 
+#champsDiv{
+	background-color: #e0e0e0;
+	border-radius: 
+}
+
+#champsTitle{
+	display: block;
+	text-align: center;
+	color: #00B2EE;
+}
+
+#champs{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.champPic{
+	width: 100px;
+}
+
+.champName{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
 #footer{
 	height: 48px;
 	width: 100%;

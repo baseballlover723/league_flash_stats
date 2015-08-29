@@ -14,19 +14,18 @@
 
 <%= image_tag("/assets/images/D_OR_F.png", :id=>"twokinds", :alt => "alt") %>
 
+<br /><br />
+
 <!-- add all the chapmpions with their pictures -->
-<div class="row">
+<div id="champsDiv" class="row">
+	<h3 id="champsTitle">Click on a champion to find out their flash stats!</h3>
 	<div id="champs">
-		<% arr = [1, 2, 3, 4, 5, 6] %>
+		<% arr = ["Patrick", "Sandy", "Spongebob", "SquarePants", "Mr. Krabs", "Squidward", "David Hasslehoff", "Flying Dutchman", "Krabby Patty", "Plankton"] %>
 		<% arr.each do |champion| %>
-		<span class="champ" width="25%">
-			<a href="#" width="100%">
-				<img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" width="25%"/>
-				
-			</a>
-			<a href="#" width="100%">
-				<%= champion %>
-			</a>
+		<span class="champ" width="50px" style="display: inline-block">
+			<a href="#" class="champPic" style="display: block">
+				<img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg"/></a>
+			<a href="#" class="champName"><%= champion %></a>
 		</span>
 		<% end %>
 	</div>

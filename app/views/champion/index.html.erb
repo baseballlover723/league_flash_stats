@@ -17,11 +17,12 @@
 	<h3 id="champsTitle">Click on a champion to find out their flash stats!</h3>
 	<div id="champs">
 		<% arr = ["Patrick", "Sandy", "Spongebob", "SquarePants", "Mr. Krabs", "Squidward", "David Hasslehoff", "Flying Dutchman", "Krabby Patty", "Plankton"] %>
-		<% arr.each do |champion| %>
+		<% @champions.each do |champion| %>
 		<span class="champ" width="50px" style="display: inline-block">
-			<a href="#" class="champPic" style="display: block">
-				<img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg"/></a>
-			<a href="#" class="champName"><%= champion %></a>
+			<!-- <a href="#" class="champPic" style="display: block">
+				<img src="<%= @riot_path + champion.img %>"/></a> -->
+			<%= link_to(image_tag(@riot_path + champion.img), champion_show_path) %>
+			<%= link_to champion.name, champion_show_path, { :class=>"champName" }  %>
 		</span>
 		<% end %>
 	</div>

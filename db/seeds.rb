@@ -1,18 +1,6 @@
 base_champion_request = "global.api.pvp.net"
 champion_request_path = "/api/lol/static-data/na/v1.2/champion"
 
-def keys
-  key_array ||= []
-  return key_array if key_array.present?
-  key_array = []
-  csv_text = File.read('keys.csv')
-  csv = CSV.parse(csv_text)
-  csv.each do |key|
-    key_array << key[0]
-  end
-  key_array
-  end
-
 def createLanes(champion)
   createRanks ChampionLane.create(champion: champion, lane: "top")
   createRanks ChampionLane.create(champion: champion, lane: "mid")

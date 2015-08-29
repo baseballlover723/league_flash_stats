@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   @@polling = false
 
   def index
+    puts "after keys"
     @start_stop_string = @@polling ? "Stop" : "Start"
   end
 

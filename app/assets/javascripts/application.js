@@ -62,6 +62,7 @@ function makeWeatherWidget(weather){
 
 
   var currentTemperature = document.createElement("span");
+  currentTemperature.id = "currentTemp";
   currentTemperature.innerHTML = "Current Temperature: " + weather.current + "&degF";
   currentTemperature.style.height = "30px";
   currentTemperature.style.width = "290px";

@@ -1,5 +1,7 @@
 class ChampionController < ApplicationController
   def show
+  	@champion = Champion.find(params.require(:id))
+  	puts @champion.as_json
   end
 
   def index

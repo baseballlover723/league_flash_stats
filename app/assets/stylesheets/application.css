@@ -159,3 +159,16 @@ h1{
 #greatDay{
 	color: #32cd32;
 }
+
+.splash{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 300px;
+}
+
+#chart{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

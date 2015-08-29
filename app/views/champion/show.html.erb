@@ -1,13 +1,26 @@
-<h1 id="championShowName"><%= @champion.name %></h1>
+<h1 id="championShowName"><%= @champion.name + " " + @champion.title %></h1>
 
 <br />
 
-<%= image_tag(@riot_path + @champion.img) %>
+<div class="row">
+  <%= form_tag do %>
+  <%= radio_button_tag 'gender', 'male' %> 
+  <%= label_tag 'gender', 'Unranked' %>
+  <% end %>
 
-<p>Find me in app/views/results/show.html.erb</p>
-<div>Graph shit  http://www.chartjs.org/</div>
+</div>
 
-<canvas id="chart" width="600"></canvas>
+<br /><br />
+
+<div class="row">
+  <%= form_tag( { :action => :save, }, { :method => :post }) %>
+</div>
+
+<div class="row">
+  <canvas id="chart" width="600"></canvas>
+</div>
+
+<br /><br />
 
 <table style="margin-left: auto; margin-right: auto;">
   <caption>I'm Diamond in League</caption>

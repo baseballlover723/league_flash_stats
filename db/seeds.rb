@@ -13,8 +13,8 @@ end
 
 def createRanks(champion_lane)
   [true, false].each do |has_flash|
-    [true, false].each do |flash_on_f|
-      return if !has_flash && !flash_on_f
+    [false, true].each do |flash_on_f|
+      return if !has_flash && flash_on_f
       RANKS.each do |rank|
         Rank.create(wins: 0, losses: 0, champion_lane: champion_lane,
                     has_flash: has_flash, flash_on_f: flash_on_f, rank: rank)

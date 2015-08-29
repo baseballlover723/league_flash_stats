@@ -1,2 +1,32 @@
-<h1>Champ#index</h1>
-<p>Find me in app/views/champ/index.html.erb</p>
+<div id="jumbo">
+	<div id="picture">
+		<h1>Welcome to D or F?</h1>
+	</div>
+</div>
+
+<br /> <br />
+
+<div class="row">
+	<div class="small-9 small-centered columns">This website is designed to show you which player is superior. The summoner who uses D for flash or the summoner who uses F for flash.</div>
+</div>
+
+<br /> <br/>
+
+<%= image_tag("/assets/images/D_OR_F.png", :id=>"twokinds", :alt => "alt") %>
+
+<br /><br />
+
+<!-- add all the chapmpions with their pictures -->
+<div id="champsDiv" class="row">
+	<h3 id="champsTitle">Click on a champion to find out their flash stats!</h3>
+	<div id="champs">
+		<% arr = ["Patrick", "Sandy", "Spongebob", "SquarePants", "Mr. Krabs", "Squidward", "David Hasslehoff", "Flying Dutchman", "Krabby Patty", "Plankton"] %>
+		<% arr.each do |champion| %>
+		<span class="champ" width="50px" style="display: inline-block">
+			<a href="#" class="champPic" style="display: block">
+				<img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg"/></a>
+			<a href="#" class="champName"><%= champion %></a>
+		</span>
+		<% end %>
+	</div>
+</div>

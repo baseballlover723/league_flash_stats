@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150830043251) do
 
-  create_table "champion_lanes", force: :cascade do |t|
-    t.string   "lane",        limit: 255
-    t.integer  "champion_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "champion_lanes", ["champion_id"], name: "index_champion_lanes_on_champion_id", using: :btree
-
   create_table "champions", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "title",       limit: 255
@@ -39,16 +30,17 @@ ActiveRecord::Schema.define(version: 20150830043251) do
   end
 
   create_table "ranks", force: :cascade do |t|
-    t.string   "rank",             limit: 255
-    t.integer  "wins",             limit: 4
-    t.integer  "losses",           limit: 4
+    t.string   "lane",        limit: 255
+    t.string   "rank",        limit: 255
+    t.integer  "wins",        limit: 4
+    t.integer  "losses",      limit: 4
     t.boolean  "has_flash"
     t.boolean  "flash_on_f"
-    t.integer  "champion_lane_id", limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "champion_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "ranks", ["champion_lane_id"], name: "index_ranks_on_champion_lane_id", using: :btree
+  add_index "ranks", ["champion_id"], name: "index_ranks_on_champion_id", using: :btree
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828195742) do
+ActiveRecord::Schema.define(version: 20150830043251) do
 
   create_table "champion_lanes", force: :cascade do |t|
     t.string   "lane",        limit: 255
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20150828195742) do
     t.string   "loading_img", limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "last_match_indices", force: :cascade do |t|
+    t.integer  "index",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "ranks", force: :cascade do |t|

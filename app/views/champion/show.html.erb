@@ -7,14 +7,43 @@
 </div>
 
 <br /><br />
-<%= radio_button_tag('gender', 'male') %> 
-<div class="row">
-  <% form_tag do %>
-  <%= radio_button_tag('gender', 'male') %> 
-  <%= label_tag('gender', 'Unranked') %>
-  <% end %>
 
+<div class="row" id="checkDiv">
+  <span class="check">
+    <%= check_box_tag 'unranked', 'unranked' %>
+    <%= label_tag "unranked", "Unranked" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'bronze', 'bronze' %>
+    <%= label_tag "bronze", "Bronze" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'silver', 'silver' %>
+    <%= label_tag "silver", "Silver" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'gold', 'gold' %>
+    <%= label_tag "gold", "Gold" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'platinum', 'platinum' %>
+    <%= label_tag "platinum", "Platinum" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'diamond', 'diamond' %>
+    <%= label_tag "diamond", "Diamond" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'master', 'master' %>
+    <%= label_tag "master", "Master" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'challenger', 'challenger' %>
+    <%= label_tag "challenger", "Challenger" %>
+  </span>
 </div>
+
+<br /><br />
 
 <div class="row" id="chartDiv">
   <canvas id="chart"></canvas>

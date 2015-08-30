@@ -178,6 +178,17 @@ h1{
 	height: 300px;
 }
 
+#checkDiv{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.check{
+	display: inline-block;
+}
+
 #chartDiv{
 	display: block;
 	margin-left: auto;

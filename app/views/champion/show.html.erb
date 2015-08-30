@@ -10,36 +10,40 @@
 
 <div class="row" id="checkDiv">
   <span class="check">
-    <%= check_box_tag 'unranked', 'unranked' %>
-    <%= label_tag "unranked", "Unranked" %>
+    <input type="checkbox" name="rank" value="unranked" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Unranked</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'bronze', 'bronze' %>
-    <%= label_tag "bronze", "Bronze" %>
+    <input type="checkbox" name="rank" value="bronze" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Bronze</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'silver', 'silver' %>
-    <%= label_tag "silver", "Silver" %>
+    <input type="checkbox" name="rank" value="silver" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Silver</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'gold', 'gold' %>
-    <%= label_tag "gold", "Gold" %>
+    <input type="checkbox" name="rank" value="gold" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Gold</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'platinum', 'platinum' %>
-    <%= label_tag "platinum", "Platinum" %>
+    <input type="checkbox" name="rank" value="platinum" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Platinum</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'diamond', 'diamond' %>
-    <%= label_tag "diamond", "Diamond" %>
+    <input type="checkbox" name="rank" value="diamond" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Diamond</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'master', 'master' %>
-    <%= label_tag "master", "Master" %>
+    <input type="checkbox" name="rank" value="master" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Master</label>
   </span>
   <span class="check">
-    <%= check_box_tag 'challenger', 'challenger' %>
-    <%= label_tag "challenger", "Challenger" %>
+    <input type="checkbox" name="rank" value="challenger" onchange="getCheckedCheckboxesFor('rank');">
+    <label for="rank">Challenger</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="all" value="all" onchange="checkedAll();">
+    <label for="all">All Ranks</label>
   </span>
 </div>
 

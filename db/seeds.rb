@@ -6,6 +6,7 @@ base_champion_request = "global.api.pvp.net"
 champion_request_path = "/api/lol/static-data/na/v1.2/champion"
 
 LastMatchIndex.create(index: -1)
+Region.create(region: "na")
 
 def create_ranks(champion)
   LANES.each do |lane|

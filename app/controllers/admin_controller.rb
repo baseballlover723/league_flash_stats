@@ -1,7 +1,8 @@
 require 'csv'
 require 'concurrent'
 
-KEY_SLEEP = 1.5
+KEY_SLEEP = 2
+MATCH_COUNT_LIMIT = 2000
 MATCH_DATA = "BILGEWATER_DATASET/NA.json"
 
 class AdminController < ApplicationController
@@ -60,7 +61,7 @@ class AdminController < ApplicationController
             write_match_index @@index
             increment_index
             count += 1
-            if count > 1000
+            if count > MATCH_COUNT_LIMIT
               puts "stopping polling to avoid database querying limits"
               return exit_polling
             end

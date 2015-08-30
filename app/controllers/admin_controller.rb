@@ -14,14 +14,10 @@ class AdminController < ApplicationController
   @@index = false
 
   def index
-    # Rank.where(wins: 1).each do |rank|
-    #   rank.inspect
-    #   rank.champion_lane.champion_id.inspect
-    #   puts rank.as_json
-    #   puts rank.champion_lane.champion_id
-    #   puts ""
-    # end
+    @is_db_clean = (Rank.where.not(wins: 0).length + Rank.where.not(losses: 0).length) == 0 && Rank.all.length == 12096
+
     puts @@index
+    @index = @@index
     @start_stop_string = @@polling ? "Stop" : "Start"
   end
 

@@ -3,12 +3,14 @@ require 'concurrent'
 
 KEY_SLEEP = 2
 MATCH_COUNT_LIMIT = 2000
-MATCH_DATA = "BILGEWATER_DATASET/NA.json"
+MATCH_DATA = "BILGEWATER_DATASET/"
 
 class AdminController < ApplicationController
   @@polling = false
-  @@base_request = "na.api.pvp.net"
-  @@request_path = "/api/lol/na/v2.2/match/"
+  @@base_request = ".api.pvp.net"
+  @@request_path = "/api/lol/"
+  @@request_path_2 = "/v2.2/match/"
+  @@region_dataset = Region.first.region
 
   @@match_ids = false
   @@index = false
@@ -16,7 +18,25 @@ class AdminController < ApplicationController
   def index
     @is_db_clean = (Rank.where.not(wins: 0).length + Rank.where.not(losses: 0).length) == 0 && Rank.all.length == 12096
     @index = @@index || get_last_match_id_index
+    @file_path = MATCH_DATA + @@region_dataset.upcase + ".json"
     @start_stop_string = @@polling ? "Stop" : "Start"
+  end
+
+  def reset_index
+    puts "reseting index to 0 **************************************************************"
+    LastMatchIndex.update_all index: -1
+    @@index = false
+    index
+    render action: 'index'
+  end
+
+  def change_region
+    puts "changing region"
+    @@region_dataset = params.require(:region).gsub(/\.json/, "").downcase
+    Region.update_all region: @@region_dataset
+    @@match_ids = false
+    index
+    render action: 'index'
   end
 
   def start_stop_polling
@@ -45,13 +65,19 @@ class AdminController < ApplicationController
       puts "polling"
       count = 0
       while true do
-        return exit_polling unless @@polling
+        if !@@polling
+          return exit_polling
+        end
         keys.each do |key|
-          return exit_polling unless @@polling
+          if !@@polling
+            return exit_polling
+          end
           match_id = get_next_match_id
-          return exit_polling unless match_id
-          match_uri = URI::HTTPS.build(host: @@base_request,
-                                       path: @@request_path + match_id,
+          if !match_id
+            return exit_polling
+          end
+          match_uri = URI::HTTPS.build(host: @@region_dataset + @@base_request,
+                                       path: @@request_path + @@region_dataset + @@request_path_2 + match_id,
                                        query: {api_key: key}.to_query)
           puts "polling. count: #{count}, index: #{@@index} match id: #{match_id} on key: #{key}"
 
@@ -135,7 +161,8 @@ class AdminController < ApplicationController
 
   def match_ids
     return @@match_ids if @@match_ids
-    file = File.read(MATCH_DATA)
+    file_name = MATCH_DATA + @@region_dataset.upcase + ".json"
+    file = File.read(file_name)
     @@match_ids = JSON.parse(file)
   end
 end

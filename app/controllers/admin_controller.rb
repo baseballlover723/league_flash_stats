@@ -46,7 +46,6 @@ class AdminController < ApplicationController
       while true do
         return exit_polling unless @@polling
         keys.each do |key|
-          return exit_polling if @@index == 5
           return exit_polling unless @@polling
           match_id = get_next_match_id
           return exit_polling unless match_id

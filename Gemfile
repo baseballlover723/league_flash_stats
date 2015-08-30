@@ -28,6 +28,7 @@ gem 'zurb-foundation'
 gem 'httparty'
 gem 'quiet_assets'
 gem "figaro"
+gem 'concurrent-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

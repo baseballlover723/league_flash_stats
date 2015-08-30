@@ -48,6 +48,7 @@
 </div>
 
 <br /><br />
+ <%= javascript_tag "var obj = #{@champion.to_json}" %>
 
 <div class="row" id="chartDiv">
   <canvas id="chart"></canvas>

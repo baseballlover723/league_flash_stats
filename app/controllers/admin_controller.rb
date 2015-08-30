@@ -10,7 +10,7 @@ class AdminController < ApplicationController
   @@base_request = ".api.pvp.net"
   @@request_path = "/api/lol/"
   @@request_path_2 = "/v2.2/match/"
-  @@region_dataset = Region.first.region
+  @@region_dataset = "na" #Region.first.region
 
   @@match_ids = false
   @@index = false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830043251) do
+ActiveRecord::Schema.define(version: 20150830194056) do
 
   create_table "champions", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -42,5 +42,11 @@ ActiveRecord::Schema.define(version: 20150830043251) do
   end
 
   add_index "ranks", ["champion_id"], name: "index_ranks_on_champion_id", using: :btree
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "region",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end

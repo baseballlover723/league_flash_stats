@@ -14,7 +14,6 @@ class AdminController < ApplicationController
 
   def index
     @is_db_clean = (Rank.where.not(wins: 0).length + Rank.where.not(losses: 0).length) == 0 && Rank.all.length == 12096
-
     @index = @@index || get_last_match_id_index
     @start_stop_string = @@polling ? "Stop" : "Start"
   end
@@ -43,6 +42,7 @@ class AdminController < ApplicationController
   def poll
     begin
       puts "polling"
+      count = 0
       while true do
         return exit_polling unless @@polling
         keys.each do |key|
@@ -52,13 +52,18 @@ class AdminController < ApplicationController
           match_uri = URI::HTTPS.build(host: @@base_request,
                                        path: @@request_path + match_id,
                                        query: {api_key: key}.to_query)
-          puts "polling. index: #{@@index} match id: #{match_id} on key: #{key}"
+          puts "polling. count: #{count}, index: #{@@index} match id: #{match_id} on key: #{key}"
 
           response = HTTParty.get(match_uri, verify: false)
           if response.code == 200
             handle_response response.parsed_response
             write_match_index @@index
             increment_index
+            count += 1
+            if count > 1000
+              puts "stopping polling to avoid database querying limits"
+              return exit_polling
+            end
           else
             puts "Error in match request"
             puts response
@@ -86,17 +91,14 @@ class AdminController < ApplicationController
       flash_on_d = participant["spell1Id"] == 4
       flash_on_f = participant["spell2Id"] == 4
 
-
       has_flash = flash_on_d || flash_on_f
 
-      champion_lane = ChampionLane.find_by(champion_id: champion_id, lane: lane)
-      rank = Rank.find_by(champion_lane: champion_lane, rank: rank, has_flash: has_flash, flash_on_f: flash_on_f)
+      rank = Rank.where(champion_id: champion_id, lane: lane, rank: rank, has_flash: has_flash, flash_on_f: flash_on_f)
       if won
-        rank.wins += 1
+        rank.update_all("wins = wins + 1")
       else
-        rank.losses += 1
+        rank.update_all("losses = losses + 1")
       end
-      rank.save!
     end
   end
 

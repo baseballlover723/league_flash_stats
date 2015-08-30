@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'zurb-foundation'
 
+gem 'ruby-json'
+
 gem 'httparty'
 gem 'quiet_assets'
 gem "figaro"

@@ -91,17 +91,14 @@ class AdminController < ApplicationController
       flash_on_d = participant["spell1Id"] == 4
       flash_on_f = participant["spell2Id"] == 4
 
-
       has_flash = flash_on_d || flash_on_f
 
-      champion_lane = ChampionLane.find_by(champion_id: champion_id, lane: lane)
-      rank = Rank.find_by(champion_lane: champion_lane, rank: rank, has_flash: has_flash, flash_on_f: flash_on_f)
+      rank = Rank.where(champion_id: champion_id, lane: lane, rank: rank, has_flash: has_flash, flash_on_f: flash_on_f)
       if won
-        rank.wins += 1
+        rank.update_all("wins = wins + 1")
       else
-        rank.losses += 1
+        rank.update_all("losses = losses + 1")
       end
-      rank.save!
     end
   end
 

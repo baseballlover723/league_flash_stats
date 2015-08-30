@@ -1,7 +1,7 @@
 require 'csv'
 require 'concurrent'
 
-DB_LIMIT_SLEEP = Rails.env.production? ? 36 : 0
+DB_LIMIT_SLEEP = Rails.env.production? ? 10 : 0
 KEY_SLEEP = 1.5
 MATCH_DATA = "BILGEWATER_DATASET/NA.json"
 

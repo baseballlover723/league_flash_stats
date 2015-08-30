@@ -1,6 +1,12 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
+    // var foo = <%= {:lol => ["lmaonade", "rotflcopter"]}.to_json.html_safe } %>
+
+    // var js_obj = <%= @champion.to_json.to_s.html_safe %>;
+    // console.log("test");
+    // console.log(test);
+
     //getLocation();
     
     function showPosition(position) {

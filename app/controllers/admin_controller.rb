@@ -1,7 +1,6 @@
 require 'csv'
 require 'concurrent'
 
-DB_LIMIT_SLEEP = Rails.env.production? ? 10 : 0
 KEY_SLEEP = 1.5
 MATCH_DATA = "BILGEWATER_DATASET/NA.json"
 
@@ -43,6 +42,7 @@ class AdminController < ApplicationController
   def poll
     begin
       puts "polling"
+      count = 0
       while true do
         return exit_polling unless @@polling
         keys.each do |key|
@@ -52,16 +52,17 @@ class AdminController < ApplicationController
           match_uri = URI::HTTPS.build(host: @@base_request,
                                        path: @@request_path + match_id,
                                        query: {api_key: key}.to_query)
-          puts "polling. index: #{@@index} match id: #{match_id} on key: #{key}"
+          puts "polling. count: #{count}, index: #{@@index} match id: #{match_id} on key: #{key}"
 
           response = HTTParty.get(match_uri, verify: false)
           if response.code == 200
             handle_response response.parsed_response
             write_match_index @@index
             increment_index
-            if DB_LIMIT_SLEEP > 0
-              puts "sleeping #{DB_LIMIT_SLEEP} seconds to limit database queries"
-              sleep DB_LIMIT_SLEEP
+            count += 1
+            if count > 1000
+              puts "stopping polling to avoid database querying limits"
+              return exit_polling
             end
           else
             puts "Error in match request"

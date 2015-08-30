@@ -69,7 +69,7 @@ class AdminController < ApplicationController
           return exit_polling
         end
         keys.each do |key|
-          if !@@polling
+          if !@@polling || @@index >= 10_000
             return exit_polling
           end
           match_id = get_next_match_id

@@ -16,7 +16,6 @@ class AdminController < ApplicationController
   def index
     @is_db_clean = (Rank.where.not(wins: 0).length + Rank.where.not(losses: 0).length) == 0 && Rank.all.length == 12096
 
-    puts @@index
     @index = @@index
     @start_stop_string = @@polling ? "Stop" : "Start"
   end
@@ -115,7 +114,6 @@ class AdminController < ApplicationController
 
   def get_next_match_id
     @@index = get_last_match_id_index unless @@index
-    puts "index = #{@@index}"
     match_ids[@@index].to_s
   end
 

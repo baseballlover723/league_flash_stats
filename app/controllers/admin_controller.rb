@@ -2,7 +2,6 @@ require 'csv'
 require 'concurrent'
 
 KEY_SLEEP = 1.5
-LAST_MATCH_FILENAME = "last_match_id.txt"
 MATCH_DATA = "BILGEWATER_DATASET/NA.json"
 
 class AdminController < ApplicationController
@@ -58,7 +57,7 @@ class AdminController < ApplicationController
           response = HTTParty.get(match_uri, verify: false)
           if response.code == 200
             handle_response response.parsed_response
-            write_match_id match_id
+            write_match_index @@index
             increment_index
           else
             puts "Error in match request"
@@ -121,15 +120,14 @@ class AdminController < ApplicationController
     @@index += 1
   end
 
-  def write_match_id(match_id)
-    file = File.open(LAST_MATCH_FILENAME, "w")
-    file.puts match_id
-    file.close
+  def write_match_index(match_index)
+    db_object = LastMatchIndex.first
+    db_object.index = match_index
+    db_object.save!
   end
 
   def get_last_match_id_index
-    last_match_id = File.read(LAST_MATCH_FILENAME).to_i
-    match_ids.index(last_match_id) || 0
+    LastMatchIndex.first.index + 1
   end
 
   def match_ids

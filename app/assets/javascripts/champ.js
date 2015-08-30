@@ -8,6 +8,8 @@ $( document ).ready(function() {
     // console.log(test);
 
     //getLocation();
+
+    console.log(obj.name);
     
     function showPosition(position) {
         getWeather(position.coords.latitude, position.coords.longitude);

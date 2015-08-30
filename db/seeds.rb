@@ -4,6 +4,8 @@ RANKS = %w(unranked bronze silver gold platinum diamond master challenger)
 base_champion_request = "global.api.pvp.net"
 champion_request_path = "/api/lol/static-data/na/v1.2/champion"
 
+LastMatchIndex.create(index: -1)
+
 def createLanes(champion)
   createRanks ChampionLane.create(champion: champion, lane: "top")
   createRanks ChampionLane.create(champion: champion, lane: "mid")

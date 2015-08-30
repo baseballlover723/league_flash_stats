@@ -167,8 +167,19 @@ h1{
 	height: 300px;
 }
 
-#chart{
+#chartDiv{
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
+}
+
+#chart{
+	display: inline-block;
+	width: 400px;
+}
+
+#chart2{
+	display: inline-block;
+	width: 400px;
 }

@@ -3,21 +3,22 @@
 <br />
 
 <div class="row">
-  <%= form_tag do %>
-  <%= radio_button_tag 'gender', 'male' %> 
-  <%= label_tag 'gender', 'Unranked' %>
+  <%= image_tag(@splash_path + @champion.splash_img, {:class => "splash"}) %>
+</div>
+
+<br /><br />
+<%= radio_button_tag('gender', 'male') %> 
+<div class="row">
+  <% form_tag do %>
+  <%= radio_button_tag('gender', 'male') %> 
+  <%= label_tag('gender', 'Unranked') %>
   <% end %>
 
 </div>
 
-<br /><br />
-
-<div class="row">
-  <%= form_tag( { :action => :save, }, { :method => :post }) %>
-</div>
-
-<div class="row">
-  <canvas id="chart" width="600"></canvas>
+<div class="row" id="chartDiv">
+  <canvas id="chart"></canvas>
+  <canvas id="chart2"></canvas>
 </div>
 
 <br /><br />

@@ -30,25 +30,25 @@ class AdminController < ApplicationController
   end
 
   def start_polling
-    logger.warn "already polling" and return if @@polling
+    puts "already polling" and return if @@polling
     @@polling = true
-    logger.info "starting polling"
+    puts "starting polling"
     index
     render action: 'index'
     Concurrent::Future.execute { poll }
   end
 
   def stop_polling
-    logger.warn "not polling" and return unless @@polling
+    puts "not polling" and return unless @@polling
     @@polling = false
-    logger.info "stopping polling"
+    puts "stopping polling"
     index
     render action: 'index'
   end
 
   def poll
     begin
-      logger.info "polling"
+      puts "polling"
       while true do
         return exit_polling unless @@polling
         keys.each do |key|
@@ -58,7 +58,7 @@ class AdminController < ApplicationController
           match_uri = URI::HTTPS.build(host: @@base_request,
                                        path: @@request_path + match_id,
                                        query: {api_key: key}.to_query)
-          logger.info "polling. index: #{@@index} match id: #{match_id} on key: #{key}"
+          puts "polling. index: #{@@index} match id: #{match_id} on key: #{key}"
 
           response = HTTParty.get(match_uri, verify: false)
           if response.code == 200
@@ -66,8 +66,8 @@ class AdminController < ApplicationController
             write_match_id match_id
             increment_index
           else
-            logger.error "Error in match request"
-            logger.error response
+            puts "Error in match request"
+            puts response
           end
         end
         puts "sleeping **********************************************************"

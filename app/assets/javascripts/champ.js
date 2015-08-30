@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
-    getLocation();
+    //getLocation();
     
     function showPosition(position) {
         getWeather(position.coords.latitude, position.coords.longitude);
@@ -27,7 +27,6 @@ $( document ).ready(function() {
     }
 
     
-
     var data = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [
@@ -162,6 +161,37 @@ $( document ).ready(function() {
     var myDoughnutChart = new Chart(ctx2).Doughnut(data2, options2);
 });
  
+function getCheckedCheckboxesFor(checkboxName) {
+    var allName = "all";
+    var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked'), values = [];
+    Array.prototype.forEach.call(checkboxes, function(element) {
+        values.push(element.value);
+    });
+
+    var all = document.querySelectorAll('input[name="' + allName + '"]:checked');
+    Array.prototype.forEach.call(all, function(element) {
+        element.checked = false;
+    });
+
+    console.log(values);
+    return values;
+}
+
+function checkedAll(){
+    var checkboxName = "rank";
+    var allName = "all";
+    var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked');
+    Array.prototype.forEach.call(checkboxes, function(element) {
+        element.checked = false;
+    });
+
+    var all = document.querySelectorAll('input[name="' + allName + '"]:checked'), values = [];
+    Array.prototype.forEach.call(all, function(element) {
+        values.push(element.value);
+    });
+    console.log(values);
+    return values;
+}
 
 
 /*!

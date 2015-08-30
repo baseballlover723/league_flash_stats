@@ -7,6 +7,7 @@ champion_request_path = "/api/lol/static-data/na/v1.2/champion"
 
 LastMatchIndex.create(index: -1)
 
+<<<<<<< HEAD
 def create_ranks(champion)
   LANES.each do |lane|
     [true, false].each do |has_flash|
@@ -16,6 +17,22 @@ def create_ranks(champion)
           Rank.create(wins: 0, losses: 0, champion: champion, lane: lane,
                       has_flash: has_flash, flash_on_f: flash_on_f, rank: rank)
         end
+=======
+def createLanes(champion)
+  createRanks ChampionLane.create(champion: champion, lane: "top")
+  createRanks ChampionLane.create(champion: champion, lane: "mid")
+  createRanks ChampionLane.create(champion: champion, lane: "bot")
+  createRanks ChampionLane.create(champion: champion, lane: "jungle")
+end
+
+def createRanks(champion_lane)
+  [true, false].each do |has_flash|
+    [false, true].each do |flash_on_f|
+      return if !has_flash && flash_on_f
+      RANKS.each do |rank|
+        Rank.create(wins: 0, losses: 0, champion_lane: champion_lane,
+                    has_flash: has_flash, flash_on_f: flash_on_f, rank: rank)
+>>>>>>> master
       end
     end
   end

@@ -18,7 +18,7 @@
 	<div id="champs">
 		<% arr = ["Patrick", "Sandy", "Spongebob", "SquarePants", "Mr. Krabs", "Squidward", "David Hasslehoff", "Flying Dutchman", "Krabby Patty", "Plankton"] %>
 		<% @champions.each do |champion| %>
-		<span class="champ" width="50px" style="display: inline-block">
+		<span class="champ">
 			<!-- <a href="#" class="champPic" style="display: block">
 				<img src="<%= @riot_path + champion.img %>"/></a> -->
 			<%= link_to(image_tag(@riot_path + champion.img), champion_show_path(champion)) %>
@@ -31,5 +31,5 @@
 <br /><br />
 
 <div class="row">
-	<div id="weatherArea"><h3>Should You Play League With This Weather?</h3></div>
+	<!-- <div id="weatherArea"><h3>Should You Play League With This Weather?</h3></div> -->
 </div>

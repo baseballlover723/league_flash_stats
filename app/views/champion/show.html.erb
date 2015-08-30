@@ -1,13 +1,56 @@
-<h1 id="championShowName"><%= @champion.name %></h1>
+<h1 id="championShowName"><%= @champion.name + " " + @champion.title %></h1>
 
 <br />
 
-<%= image_tag(@riot_path + @champion.img) %>
+<div class="row">
+  <%= image_tag(@splash_path + @champion.splash_img, {:class => "splash"}) %>
+</div>
 
-<p>Find me in app/views/results/show.html.erb</p>
-<div>Graph shit  http://www.chartjs.org/</div>
+<br /><br />
 
-<canvas id="chart" width="600"></canvas>
+<div class="row" id="checkDiv">
+  <span class="check">
+    <%= check_box_tag 'unranked', 'unranked' %>
+    <%= label_tag "unranked", "Unranked" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'bronze', 'bronze' %>
+    <%= label_tag "bronze", "Bronze" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'silver', 'silver' %>
+    <%= label_tag "silver", "Silver" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'gold', 'gold' %>
+    <%= label_tag "gold", "Gold" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'platinum', 'platinum' %>
+    <%= label_tag "platinum", "Platinum" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'diamond', 'diamond' %>
+    <%= label_tag "diamond", "Diamond" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'master', 'master' %>
+    <%= label_tag "master", "Master" %>
+  </span>
+  <span class="check">
+    <%= check_box_tag 'challenger', 'challenger' %>
+    <%= label_tag "challenger", "Challenger" %>
+  </span>
+</div>
+
+<br /><br />
+
+<div class="row" id="chartDiv">
+  <canvas id="chart"></canvas>
+  <canvas id="chart2"></canvas>
+</div>
+
+<br /><br />
 
 <table style="margin-left: auto; margin-right: auto;">
   <caption>I'm Diamond in League</caption>

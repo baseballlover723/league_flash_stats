@@ -1,6 +1,7 @@
 require 'csv'
 require 'concurrent'
 
+DB_LIMIT_SLEEP = Rails.env.production? ? 36 : 0
 KEY_SLEEP = 1.5
 MATCH_DATA = "BILGEWATER_DATASET/NA.json"
 
@@ -14,7 +15,6 @@ class AdminController < ApplicationController
 
   def index
     @is_db_clean = (Rank.where.not(wins: 0).length + Rank.where.not(losses: 0).length) == 0 && Rank.all.length == 12096
-
     @index = @@index || get_last_match_id_index
     @start_stop_string = @@polling ? "Stop" : "Start"
   end
@@ -59,6 +59,10 @@ class AdminController < ApplicationController
             handle_response response.parsed_response
             write_match_index @@index
             increment_index
+            if DB_LIMIT_SLEEP > 0
+              puts "sleeping #{DB_LIMIT_SLEEP} seconds to limit database queries"
+              sleep DB_LIMIT_SLEEP
+            end
           else
             puts "Error in match request"
             puts response

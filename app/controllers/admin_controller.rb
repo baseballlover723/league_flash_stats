@@ -10,13 +10,12 @@ class AdminController < ApplicationController
   @@base_request = ".api.pvp.net"
   @@request_path = "/api/lol/"
   @@request_path_2 = "/v2.2/match/"
-  @@region_dataset = "na" #Region.first.region
+  @@region_dataset = Region.first.region
 
   @@match_ids = false
   @@index = false
 
   def index
-    Region.create(region: "na") if Region.all.count == 0
     @is_db_clean = (Rank.where.not(wins: 0).length + Rank.where.not(losses: 0).length) == 0 && Rank.all.length == 12096
     @index = @@index || get_last_match_id_index
     @file_path = MATCH_DATA + @@region_dataset.upcase + ".json"

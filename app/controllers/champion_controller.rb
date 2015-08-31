@@ -31,6 +31,6 @@ class ChampionController < ApplicationController
     @champions = Champion.all.sort_by{ |champion| champion.name }
   end
 
-  def create
+  def overall
   end
 end

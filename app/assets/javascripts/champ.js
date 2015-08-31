@@ -1,15 +1,36 @@
+var winChart, lossChart;
+var chartOptions = {
+  //Boolean - Whether we should show a stroke on each segment
+  segmentShowStroke : true,
+
+  //String - The colour of each segment stroke
+  segmentStrokeColor : "#fff",
+
+  //Number - The width of each segment stroke
+  segmentStrokeWidth : 2,
+
+  //Number - The percentage of the chart that we cut out of the middle
+  percentageInnerCutout : 50, // This is 0 for Pie charts
+
+  //Number - Amount of animation steps
+  animationSteps : 100,
+
+  //String - Animation easing effect
+  animationEasing : "easeOutBounce",
+
+  //Boolean - Whether we animate the rotation of the Doughnut
+  animateRotate : true,
+
+  //Boolean - Whether we animate scaling the Doughnut from the centre
+  animateScale : false,
+
+  //String - A legend template
+  legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+};
+
 $( document ).ready(function() {
     console.log( "ready!" );
-
-    // var foo = <%= {:lol => ["lmaonade", "rotflcopter"]}.to_json.html_safe } %>
-
-    // var js_obj = <%= @champion.to_json.to_s.html_safe %>;
-    // console.log("test");
-    // console.log(test);
-
-    //getLocation();
-
-    console.log(obj.name);
     
     function showPosition(position) {
         getWeather(position.coords.latitude, position.coords.longitude);
@@ -34,142 +55,70 @@ $( document ).ready(function() {
         }
     }
 
-    
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
-            }
-        ]
-    };
-
-    var options = {
-
-        ///Boolean - Whether grid lines are shown across the chart
-        scaleShowGridLines : true,
-
-        //String - Colour of the grid lines
-        scaleGridLineColor : "rgba(0,0,0,.05)",
-
-        //Number - Width of the grid lines
-        scaleGridLineWidth : 1,
-
-        //Boolean - Whether to show horizontal lines (except X axis)
-        scaleShowHorizontalLines: true,
-
-        //Boolean - Whether to show vertical lines (except Y axis)
-        scaleShowVerticalLines: true,
-
-        //Boolean - Whether the line is curved between points
-        bezierCurve : true,
-
-        //Number - Tension of the bezier curve between points
-        bezierCurveTension : 0.4,
-
-        //Boolean - Whether to show a dot for each point
-        pointDot : true,
-
-        //Number - Radius of each point dot in pixels
-        pointDotRadius : 4,
-
-        //Number - Pixel width of point dot stroke
-        pointDotStrokeWidth : 1,
-
-        //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-        pointHitDetectionRadius : 20,
-
-        //Boolean - Whether to show a stroke for datasets
-        datasetStroke : true,
-
-        //Number - Pixel width of dataset stroke
-        datasetStrokeWidth : 2,
-
-        //Boolean - Whether to fill the dataset with a colour
-        datasetFill : true,
-
-        //String - A legend template
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-
-    };
-
-    var ctx = document.getElementById("chart").getContext("2d");
-    var myLineChart = new Chart(ctx).Line(data, options);
-
-
-    var data2 = [
+    var startingData1 = [
         {
-            value: 300,
+            value: 50,
             color:"#F7464A",
-            highlight: "#FF5A5E",
-            label: "Red"
+            highlight: "pink",
+            label: "Top"
         },
         {
             value: 50,
             color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: "Green"
+            highlight: "pink",
+            label: "Jungle"
         },
         {
-            value: 100,
+            value: 50,
             color: "#FDB45C",
-            highlight: "#FFC870",
-            label: "Yellow"
+            highlight: "pink",
+            label: "Mid"
+        },
+        {
+            value: 50,
+            color: "purple",
+            highlight: "pink",
+            label: "Bot"
         }
     ];
 
-    var options2 = {
-        //Boolean - Whether we should show a stroke on each segment
-        segmentShowStroke : true,
+    var startingData2 = [
+        {
+            value: 50,
+            color:"#F7464A",
+            highlight: "pink",
+            label: "Top"
+        },
+        {
+            value: 50,
+            color: "#46BFBD",
+            highlight: "pink",
+            label: "Jungle"
+        },
+        {
+            value: 50,
+            color: "#FDB45C",
+            highlight: "pink",
+            label: "Mid"
+        },
+        {
+            value: 50,
+            color: "purple",
+            highlight: "pink",
+            label: "Bot"
+        }
+    ];
 
-        //String - The colour of each segment stroke
-        segmentStrokeColor : "#fff",
 
-        //Number - The width of each segment stroke
-        segmentStrokeWidth : 2,
-
-        //Number - The percentage of the chart that we cut out of the middle
-        percentageInnerCutout : 50, // This is 0 for Pie charts
-
-        //Number - Amount of animation steps
-        animationSteps : 100,
-
-        //String - Animation easing effect
-        animationEasing : "easeOutBounce",
-
-        //Boolean - Whether we animate the rotation of the Doughnut
-        animateRotate : true,
-
-        //Boolean - Whether we animate scaling the Doughnut from the centre
-        animateScale : false,
-
-        //String - A legend template
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-
-    };
+    var ctx = document.getElementById("chart").getContext("2d");
+    winChart = new Chart(ctx).Doughnut(startingData1, chartOptions);
 
     var ctx2 = document.getElementById("chart2").getContext("2d");
-    var myDoughnutChart = new Chart(ctx2).Doughnut(data2, options2);
+    lossChart = new Chart(ctx2).Doughnut(startingData2, chartOptions);
 });
  
-function getCheckedCheckboxesFor(checkboxName) {
+function getCheckedCheckboxesFor(callback) {
+  var checkboxName = 'rank';
     var allName = "all";
     var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked'), values = [];
     Array.prototype.forEach.call(checkboxes, function(element) {
@@ -181,11 +130,12 @@ function getCheckedCheckboxesFor(checkboxName) {
         element.checked = false;
     });
 
-    console.log(values);
+    populateTables(values, callback);
+
     return values;
 }
 
-function checkedAll(){
+function checkedAll(callback){
     var checkboxName = "rank";
     var allName = "all";
     var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked');
@@ -193,12 +143,190 @@ function checkedAll(){
         element.checked = false;
     });
 
-    var all = document.querySelectorAll('input[name="' + allName + '"]:checked'), values = [];
-    Array.prototype.forEach.call(all, function(element) {
-        values.push(element.value);
-    });
-    console.log(values);
+    values = ["unranked", "bronze", "silver", "gold", "platinum", "diamond", "master", "challenger"];
+    populateTables(values, callback);
     return values;
+}
+
+function populateTables(ranks, callback){
+  //overall
+  var releventOverallData = getRank(overallData.flash_on_d, ranks);
+  $('#overall .dGamesOverall').html(releventOverallData.games);
+  $('#overall .dWinsOverall').html(releventOverallData.wins);
+  $('#overall .dLossesOverall').html(releventOverallData.losses);
+  var percent = (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2);
+  $('#overall .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+
+  releventOverallData = getRank(overallData.flash_on_f, ranks);
+  $('#overall .fGamesOverall').html(releventOverallData.games);
+  $('#overall .fWinsOverall').html(releventOverallData.wins);
+  $('#overall .fLossesOverall').html(releventOverallData.losses);
+  percent = (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2);
+  $('#overall .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+
+  releventOverallData = getRank(overallData.no_flash, ranks);
+  $('#overall .nGamesOverall').html(releventOverallData.games);
+  $('#overall .nWinsOverall').html(releventOverallData.wins);
+  $('#overall .nLossesOverall').html(releventOverallData.losses);
+  percent = (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2);
+  $('#overall .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+
+  //top
+  var releventTopData = getRank(topData.flash_on_d, ranks);
+  var topWins = 0;
+  var topLosses = 0;
+  $('#top .dGamesOverall').html(releventTopData.games);
+  $('#top .dWinsOverall').html(releventTopData.wins);
+  $('#top .dLossesOverall').html(releventTopData.losses);
+  percent = (releventTopData.wins * 100 / releventTopData.games).toFixed(2);
+  $('#top .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  topWins += releventTopData.wins;
+  topLosses += releventTopData.losses;
+
+  releventTopData = getRank(topData.flash_on_f, ranks);
+  $('#top .fGamesOverall').html(releventTopData.games);
+  $('#top .fWinsOverall').html(releventTopData.wins);
+  $('#top .fLossesOverall').html(releventTopData.losses);
+  percent = (releventTopData.wins * 100 / releventTopData.games).toFixed(2);
+  $('#top .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  topWins += releventTopData.wins;
+  topLosses += releventTopData.losses;
+
+  releventTopData = getRank(topData.no_flash, ranks);
+  $('#top .nGamesOverall').html(releventTopData.games);
+  $('#top .nWinsOverall').html(releventTopData.wins);
+  $('#top .nLossesOverall').html(releventTopData.losses);
+  percent = (releventTopData.wins * 100 / releventTopData.games).toFixed(2);
+  $('#top .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  topWins += releventTopData.wins;
+  topLosses += releventTopData.losses;
+
+  //jungle
+  var releventJungleData = getRank(jungleData.flash_on_d, ranks);
+  var jungleWins = 0;
+  var jungleLosses = 0;
+  $('#jungle .dGamesOverall').html(releventJungleData.games);
+  $('#jungle .dWinsOverall').html(releventJungleData.wins);
+  $('#jungle .dLossesOverall').html(releventJungleData.losses);
+  percent = (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2);
+  $('#jungle .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  jungleWins += releventJungleData.wins;
+  jungleLosses += releventJungleData.losses;
+
+  releventJungleData = getRank(jungleData.flash_on_f, ranks);
+  $('#jungle .fGamesOverall').html(releventJungleData.games);
+  $('#jungle .fWinsOverall').html(releventJungleData.wins);
+  $('#jungle .fLossesOverall').html(releventJungleData.losses);
+  percent = (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2);
+  $('#jungle .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  jungleWins += releventJungleData.wins;
+  jungleLosses += releventJungleData.losses;
+
+  releventJungleData = getRank(jungleData.no_flash, ranks);
+  $('#jungle .nGamesOverall').html(releventJungleData.games);
+  $('#jungle .nWinsOverall').html(releventJungleData.wins);
+  $('#jungle .nLossesOverall').html(releventJungleData.losses);
+  percent = (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2);
+  $('#jungle .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  jungleWins += releventJungleData.wins;
+  jungleLosses += releventJungleData.losses;
+
+  //middle
+  var releventMidData = getRank(midData.flash_on_d, ranks);
+  var midWins = 0;
+  var midLosses = 0;
+
+  // TOOD put this in methods
+  $('#mid .dGamesOverall').html(releventMidData.games);
+  $('#mid .dWinsOverall').html(releventMidData.wins);
+  $('#mid .dLossesOverall').html(releventMidData.losses);
+  percent = (releventMidData.wins * 100 / releventMidData.games).toFixed(2);
+  $('#mid .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  midWins += releventMidData.wins;
+  midLosses += releventMidData.losses;
+
+  releventMidData = getRank(midData.flash_on_f, ranks);
+  $('#mid .fGamesOverall').html(releventMidData.games);
+  $('#mid .fWinsOverall').html(releventMidData.wins);
+  $('#mid .fLossesOverall').html(releventMidData.losses);
+  percent = (releventMidData.wins * 100 / releventMidData.games).toFixed(2);
+  $('#mid .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  midWins += releventMidData.wins;
+  midLosses += releventMidData.losses;
+
+  releventMidData = getRank(midData.no_flash, ranks);
+  $('#mid .nGamesOverall').html(releventMidData.games);
+  $('#mid .nWinsOverall').html(releventMidData.wins);
+  $('#mid .nLossesOverall').html(releventMidData.losses);
+  percent = (releventMidData.wins * 100 / releventMidData.games).toFixed(2);
+  $('#mid .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  midWins += releventMidData.wins;
+  midLosses += releventMidData.losses;
+
+  //bot
+  var releventBotData = getRank(botData.flash_on_d, ranks);
+  var botWins = 0;
+  var botLosses = 0;
+  $('#bot .dGamesOverall').html(releventBotData.games);
+  $('#bot .dWinsOverall').html(releventBotData.wins);
+  $('#bot .dLossesOverall').html(releventBotData.losses);
+  percent = (releventBotData.wins * 100 / releventBotData.games).toFixed(2);
+  $('#bot .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  botWins += releventBotData.wins;
+  botLosses += releventBotData.losses;
+
+  releventBotData = getRank(botData.flash_on_f, ranks);
+  $('#bot .fGamesOverall').html(releventBotData.games);
+  $('#bot .fWinsOverall').html(releventBotData.wins);
+  $('#bot .fLossesOverall').html(releventBotData.losses);
+  percent = (releventBotData.wins * 100 / releventBotData.games).toFixed(2);
+  $('#bot .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  botWins += releventBotData.wins;
+  botLosses += releventBotData.losses;
+
+  releventBotData = getRank(botData.no_flash, ranks);
+  $('#bot .nGamesOverall').html(releventBotData.games);
+  $('#bot .nWinsOverall').html(releventBotData.wins);
+  $('#bot .nLossesOverall').html(releventBotData.losses);
+  percent = (releventBotData.wins * 100 / releventBotData.games).toFixed(2);
+  $('#bot .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  botWins += releventBotData.wins;
+  botLosses += releventBotData.losses;
+
+  updateChart(topWins, jungleWins, midWins, botWins, true);
+  updateChart(topLosses, jungleLosses, midLosses, botLosses, false);
+}
+
+function updateChart(top, jungle, mid, bot, isWinChart) {
+  if(isWinChart){
+    winChart.segments[0].value = top;
+    winChart.segments[1].value = jungle;
+    winChart.segments[2].value = mid;
+    winChart.segments[3].value = bot;
+    winChart.update();
+  }
+  else{
+    lossChart.segments[0].value = top;
+    lossChart.segments[1].value = jungle;
+    lossChart.segments[2].value = mid;
+    lossChart.segments[3].value = bot;
+    lossChart.update();
+  }
+}
+
+function getRank(buckets, ranks){
+  var obj = {games:0, wins:0, losses:0};
+  for (var bucket in buckets) {
+    bucket = buckets[bucket];
+    if (ranks.indexOf(bucket.rank) != -1) {
+      var test = true;
+      obj.games += isNaN(bucket.wins) ? 0 : bucket.wins;
+      obj.games += isNaN(bucket.losses) ? 0 : bucket.losses;
+      obj.wins += isNaN(bucket.wins) ? 0 : bucket.wins;
+      obj.losses += isNaN(bucket.losses) ? 0 : bucket.losses;
+    }
+  }
+  return obj;
 }
 
 //get weather information from the openweathermap api and display it with a widget

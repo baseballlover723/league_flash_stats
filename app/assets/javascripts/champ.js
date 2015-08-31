@@ -33,6 +33,10 @@ var chartOptions = {
 $( document ).ready(function() {
   var helpers = Chart.helpers;
   console.log( "ready!" );
+
+  if(window.location.protocol == "http:"){
+    getLocation();
+  }
   
   function showPosition(position) {
       getWeather(position.coords.latitude, position.coords.longitude);
@@ -602,8 +606,13 @@ function toTitleCase(str){
 }
 
 function makeWeatherWidget(weather){
-  var weatherArea = document.getElementById('weatherArea');
-  weatherArea.style.height = "220px";
+  var weatherArea = document.createElement('div');
+  weatherArea.id = 'weatherArea';
+  weatherArea.style.height = "240px";
+
+  var header = document.createElement("h3");
+  header.innerHTML = "Should You Play League With This Weather?";
+  weatherArea.appendChild(header);
 
 
   var currentTemperature = document.createElement("span");
@@ -678,4 +687,13 @@ function makeWeatherWidget(weather){
   description.style.textAlign = "center";
   weatherArea.appendChild(description);
 
+  var hint = document.createElement("div");
+  hint.innerHTML = "Hint: It's always great weather to play league in.";
+  hint.style.fontSize = "12px";
+  hint.style.textAlign = "center";
+  hint.style.height = "15px";
+  hint.style.marginTop = "105px";
+  weatherArea.appendChild(hint);
+
+  document.getElementById("weatherWrapper").appendChild(weatherArea);
 }

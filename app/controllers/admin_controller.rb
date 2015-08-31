@@ -73,7 +73,8 @@ class AdminController < ApplicationController
             return exit_polling
           end
           match_id = get_next_match_id
-          if !match_id
+          if match_id.empty?
+            puts "got to the end of the '#{@@region_dataset}' dataset"
             return exit_polling
           end
           match_uri = URI::HTTPS.build(host: @@region_dataset + @@base_request,

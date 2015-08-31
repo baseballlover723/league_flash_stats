@@ -63,7 +63,7 @@
       <h4 class="disposable">No Data</h4>
     </div>
   </div>
-  <%= render partial: "stats_table", locals: {lane: "overall", data: @buckets.flatten} %>
+  <%= render partial: "stats_table", locals: {lane: "overall", data: nil} %>
   <div class="chartWrapper" style="display: inline-block">
     <h3>Losses by Lane</h3>
     <div id="chart2Holder">
@@ -78,24 +78,24 @@
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "top", data: @buckets["top"]} %>
+          <%= render partial: "stats_table", locals: {lane: "top", data: nil} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "jungle", data: @buckets["jungle"]} %>
+          <%= render partial: "stats_table", locals: {lane: "jungle", data: nil} %>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "mid", data: @buckets["mid"]} %>
+          <%= render partial: "stats_table", locals: {lane: "mid", data: nil} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "bot", data: @buckets["bot"]} %>
+          <%= render partial: "stats_table", locals: {lane: "bot", data: nil} %>
         </div>
       </td>
     </tr>

@@ -2,93 +2,49 @@
 
 <br />
 
-<div class="row">
-  <%= image_tag("/assets/images/summoners_rift.png", :class=>"rift") %>
+<div id="riftWrapper" class="row">
+	<div id=riftInsideWrapper>
+		<%= image_tag("/assets/images/summoners_rift.png", :class=>"rift") %>
+		<h4 class="overallDescription">This represents an accumulation of all the champions on the rift that were played during the Black Market event</h4>
+	</div>
 </div>
 
 <br /><br />
 
-<div class="row">
-	<h4 class="overallDescription">This represents an accumulation of all the champions on the rift that were played during the Black Market event</h4>
-</div>
 
-<br /><br />
-
-<div class="row" id="checkDiv">
-  <span class="check">
-    <input type="checkbox" name="rank" value="unranked" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Unranked</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="bronze" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Bronze</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="silver" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Silver</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="gold" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Gold</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="platinum" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Platinum</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="diamond" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Diamond</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="master" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Master</label>
-  </span>
-  <span class="check">
-    <input type="checkbox" name="rank" value="challenger" onchange="getCheckedCheckboxesFor('callback');">
-    <label for="rank">Challenger</label>
-  </span>
-  <span class="check">
-    <input id="allRanksCheckbox" type="checkbox" name="all" value="all" onchange="checkedAll();">
-    <label for="all">All Ranks</label>
-  </span>
-</div>
+<%= javascript_tag "var obj = #{@buckets.to_json}" %>
+<%= javascript_tag "var overallData = #{@buckets['overall'].to_json}" %>
+<%= javascript_tag "var topData = #{@buckets['top'].to_json}" %>
+<%= javascript_tag "var midData = #{@buckets['mid'].to_json}" %>
+<%= javascript_tag "var botData = #{@buckets['bot'].to_json}" %>
+<%= javascript_tag "var jungleData = #{@buckets['jungle'].to_json}" %>
 
 <div class='row' id="overallWrapper">
-  <div class="chartWrapper" style="display: inline-block">
-    <h3>Wins by Lane</h3>
-    <div id="chart1Holder">
-      <canvas id="chart"></canvas>
-      <h4 class="disposable">No Data</h4>
-    </div>
-  </div>
-  <div class="chartWrapper" style="display: inline-block">
-    <h3>Losses by Lane</h3>
-    <div id="chart2Holder">
-      <canvas id="chart2"></canvas>
-      <h4 class="disposable">No Data</h4>
-    </div>
-  </div>
+	<%= render partial: "stats_table", locals: {lane: "overall", data: @buckets["overall"]} %>
 </div>
-
 <div class='row'>
   <table style="width: 100%;">
     <tr>
       <td>
         <div class="tableWrapper">
+          <%= render partial: "stats_table", locals: {lane: "top", data: @buckets["top"]} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
+          <%= render partial: "stats_table", locals: {lane: "jungle", data: @buckets["jungle"]} %>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div class="tableWrapper">
+          <%= render partial: "stats_table", locals: {lane: "mid", data: @buckets["mid"]} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
+          <%= render partial: "stats_table", locals: {lane: "bot", data: @buckets["bot"]} %>
         </div>
       </td>
     </tr>

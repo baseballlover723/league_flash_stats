@@ -42,7 +42,7 @@
     <label for="rank">Challenger</label>
   </span>
   <span class="check">
-    <input type="checkbox" name="all" value="all" onchange="checkedAll();">
+    <input id="allRanksCheckbox" type="checkbox" name="all" value="all" onchange="checkedAll();">
     <label for="all">All Ranks</label>
   </span>
 </div>
@@ -54,14 +54,6 @@
  <%= javascript_tag "var midData = #{@buckets['mid'].to_json}" %>
  <%= javascript_tag "var botData = #{@buckets['bot'].to_json}" %>
  <%= javascript_tag "var jungleData = #{@buckets['jungle'].to_json}" %>
-
-
-<div class="row" id="chartDiv">
-  <!-- <canvas id="chart"></canvas> -->
-  <!-- <canvas id="chart2"></canvas> -->
-</div>
-
-<br /><br />
 
 <div class='row' id="overallWrapper">
   <div class="chartWrapper" style="display: inline-block">

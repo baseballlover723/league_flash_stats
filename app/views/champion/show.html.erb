@@ -64,14 +64,20 @@
 <br /><br />
 
 <div class='row' id="overallWrapper">
-  <div style="display: inline-block">
+  <div class="chartWrapper" style="display: inline-block">
     <h3>Wins by Lane</h3>
-    <canvas id="chart"></canvas>
+    <div id="chart1Holder">
+      <canvas id="chart"></canvas>
+      <h4 class="disposable">No Data</h4>
+    </div>
   </div>
   <%= render partial: "stats_table", locals: {lane: "overall", data: @buckets.flatten} %>
-  <div style="display: inline-block">
+  <div class="chartWrapper" style="display: inline-block">
     <h3>Losses by Lane</h3>
-    <canvas id="chart2"></canvas>
+    <div id="chart2Holder">
+      <canvas id="chart2"></canvas>
+      <h4 class="disposable">No Data</h4>
+    </div>
   </div>
 </div>
 

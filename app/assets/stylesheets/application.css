@@ -224,6 +224,14 @@ h1{
 	vertical-align: middle;
 }
 
+.chartWrapper {
+	vertical-align: middle;
+	margin-bottom: 15px;
+}
+
+h4 {
+	margin-bottom: 0px;
+}
 .tables{
 	display: inline-block;
 	text-align: center;

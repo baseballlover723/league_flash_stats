@@ -293,24 +293,51 @@ function populateTables(ranks, callback){
   botWins += releventBotData.wins;
   botLosses += releventBotData.losses;
 
+  deleteDisposables();
   updateChart(topWins, jungleWins, midWins, botWins, true);
   updateChart(topLosses, jungleLosses, midLosses, botLosses, false);
 }
 
+function deleteDisposables(){
+  var elements = document.getElementsByClassName("disposable");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
 function updateChart(top, jungle, mid, bot, isWinChart) {
+  
   if(isWinChart){
-    winChart.segments[0].value = top;
-    winChart.segments[1].value = jungle;
-    winChart.segments[2].value = mid;
-    winChart.segments[3].value = bot;
-    winChart.update();
+    if(top == 0 && jungle == 0 && mid == 0 && bot == 0){
+      var noData = document.createElement("h4");
+      noData.className = "disposable";
+      noData.innerHTML = "No Data";
+      document.getElementById("chart1Holder").appendChild(noData);
+    }
+    else{
+      winChart.segments[0].value = top;
+      winChart.segments[1].value = jungle;
+      winChart.segments[2].value = mid;
+      winChart.segments[3].value = bot;
+      winChart.update();
+      deleteDisposables();
+    }
   }
   else{
-    lossChart.segments[0].value = top;
-    lossChart.segments[1].value = jungle;
-    lossChart.segments[2].value = mid;
-    lossChart.segments[3].value = bot;
-    lossChart.update();
+    if(top == 0 && jungle == 0 && mid == 0 && bot == 0){
+      var noData = document.createElement("h4");
+      noData.className = "disposable";
+      noData.innerHTML = "No Data";
+      document.getElementById("chart2Holder").appendChild(noData);
+    }
+    else{
+      lossChart.segments[0].value = top;
+      lossChart.segments[1].value = jungle;
+      lossChart.segments[2].value = mid;
+      lossChart.segments[3].value = bot;
+      lossChart.update();
+      deleteDisposables();
+    }
   }
 }
 

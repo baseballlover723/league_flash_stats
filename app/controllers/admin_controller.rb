@@ -6,6 +6,8 @@ MATCH_COUNT_LIMIT = 2000
 MATCH_DATA = "BILGEWATER_DATASET/"
 
 class AdminController < ApplicationController
+  http_basic_authenticate_with name: ENV["ADMIN_USERNAME"], password: ENV["ADMIN_PASSWORD"]
+
   @@polling = false
   @@base_request = ".api.pvp.net"
   @@request_path = "/api/lol/"

@@ -1,10 +1,12 @@
 LANES = %w(top mid bot jungle)
 FLASH_STATES = %w(no_flash flash_on_f flash_on_d)
+RANKS = %w(unranked bronze silver gold platinum diamond master challenger)
+
 class ChampionController < ApplicationController
   def show
-  	@riot_path = "https://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/"
-  	@splash_path = "https://ddragon.leagueoflegends.com/cdn/img/champion/"
-  	@champion = Champion.find(params.require(:id))
+    @riot_path = "https://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/"
+    @splash_path = "https://ddragon.leagueoflegends.com/cdn/img/champion/"
+    @champion = Champion.find(params.require(:id))
 
     flash_hash = {no_flash: [], flash_on_f: [], flash_on_d: []}.with_indifferent_access
     @buckets = {
@@ -28,9 +30,40 @@ class ChampionController < ApplicationController
 
   def index
     @riot_path = "https://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/"
-    @champions = Champion.all.sort_by{ |champion| champion.name }
+    @champions = Champion.all.sort_by { |champion| champion.name }
   end
 
   def overall
+    flash_hash = {no_flash: [], flash_on_f: [], flash_on_d: []}.with_indifferent_access
+    @buckets = {
+        overall: flash_hash,
+        top: flash_hash.deep_dup,
+        mid: flash_hash.deep_dup,
+        bot: flash_hash.deep_dup,
+        jungle: flash_hash.deep_dup
+    }.with_indifferent_access
+
+    LANES.each do |lane|
+      FLASH_STATES.each do |flash_state|
+        has_flash = true
+        flash_on_f = false
+
+        if flash_state == "no_flash"
+          has_flash = false
+        elsif flash_state == "flash_on_f"
+          flash_on_f = true
+        end
+        # do ranks if we can
+        # RANKS.each do |rank|
+        # overall_rank = {lane: lane, has_flash: has_flash, flash_on_f: flash_on_f}.with_indifferent_access
+        # overall_rank["wins"] = Rank.where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f).sum("wins")
+        # overall_rank["losses"] = Rank.where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f).sum("losses")
+
+        overall_rank = Rank.select("SUM(ranks.wins) AS wins, SUM(ranks.losses) AS losses, has_flash, flash_on_f, lane").
+            where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f)
+        @buckets[lane][flash_state] << overall_rank
+        # end
+      end
+    end
   end
 end

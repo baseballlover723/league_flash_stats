@@ -32,7 +32,7 @@ var chartOptions = {
 
 $( document ).ready(function() {
   var helpers = Chart.helpers;
-  console.log( "ready!" );
+  // console.log( "ready!" );
 
   if(window.location.protocol == "http:"){
     getLocation();
@@ -48,7 +48,7 @@ $( document ).ready(function() {
       {
           if(document.getElementById("currentTemp"))
           {
-              console.log("already there");
+              // console.log("already there");
           }
           else
           {
@@ -142,7 +142,7 @@ $( document ).ready(function() {
     legendNode.style.backgroundColor = lossChart.segments[index].fillColor;
       helpers.addEvent(legendNode, 'mouseover', function () {
           var activeSegment = lossChart.segments[index];
-          console.log('activeSegment');
+          // console.log('activeSegment');
           activeSegment.save();
           lossChart.showTooltip([activeSegment]);
           activeSegment.restore();
@@ -235,12 +235,10 @@ function populateTables(ranks, callback){
     //percent2 > percent3
     if(percent2 > percent3){
       //percent2 is the biggest
-      console.log("here1");
       $('#overall .fPercentOverall').css("background-color", "#00B2EE");
     }
     else{
       //percent3 is the bigggest
-      console.log("here3");
       $('#overall .nPercentOverall').css("background-color", "#00B2EE");
     }
   }
@@ -296,12 +294,10 @@ function populateTables(ranks, callback){
     //percent2 > percent3
     if(percent2 > percent3){
       //percent2 is the biggest
-      console.log("here1");
       $('#top .fPercentOverall').css("background-color", "#00B2EE");
     }
     else{
       //percent3 is the bigggest
-      console.log("here3");
       $('#top .nPercentOverall').css("background-color", "#00B2EE");
     }
   }
@@ -357,12 +353,10 @@ function populateTables(ranks, callback){
     //percent2 > percent3
     if(percent2 > percent3){
       //percent2 is the biggest
-      console.log("here1");
       $('#jungle .fPercentOverall').css("background-color", "#00B2EE");
     }
     else{
       //percent3 is the bigggest
-      console.log("here3");
       $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
     }
   }
@@ -420,12 +414,10 @@ function populateTables(ranks, callback){
     //percent2 > percent3
     if(percent2 > percent3){
       //percent2 is the biggest
-      console.log("here1");
       $('#mid .fPercentOverall').css("background-color", "#00B2EE");
     }
     else{
       //percent3 is the bigggest
-      console.log("here3");
       $('#mid .nPercentOverall').css("background-color", "#00B2EE");
     }
   }
@@ -481,12 +473,10 @@ function populateTables(ranks, callback){
     //percent2 > percent3
     if(percent2 > percent3){
       //percent2 is the biggest
-      console.log("here1");
       $('#bot .fPercentOverall').css("background-color", "#00B2EE");
     }
     else{
       //percent3 is the bigggest
-      console.log("here3");
       $('#bot .nPercentOverall').css("background-color", "#00B2EE");
     }
   }
@@ -497,7 +487,7 @@ function populateTables(ranks, callback){
 }
 
 function resetColors(){
-  console.log("reset colors");
+  // console.log("reset colors");
   var dRow = document.getElementsByClassName("d");
   var fRow = document.getElementsByClassName("f");
   var nRow = document.getElementsByClassName("n");
@@ -569,7 +559,7 @@ function getRank(buckets, ranks){
 
 //get weather information from the openweathermap api and display it with a widget
 function getWeather(latitude, longitude){
-    console.log('getting weather');
+    // console.log('getting weather');
   var weather = {};
   $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude,

@@ -167,6 +167,7 @@ a:hover{
   	border-width: medium;
  	border-color: #00B2EE;
  	display: inline-block;
+ 	background-color: #e0e0e0;
 }
 
 #weatherArea h3{
@@ -279,7 +280,7 @@ td{
 }
 
 .f{
-	background-color: #f9f9f9;
+	background-color: #e0e0e0;
 }
 
 #riftWrapper {

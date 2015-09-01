@@ -313,3 +313,8 @@ td {
 .winner {
     background-color: #00B2EE
 }
+
+.overallLink {
+    font-size: 18pt;
+    font-weight: bold;
+}

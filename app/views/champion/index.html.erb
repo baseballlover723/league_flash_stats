@@ -8,20 +8,17 @@
 <br /> <br />
 
 <div class="row">
-	<div class="small-9 small-centered columns">This website is designed to show you which player is superior: The summoner who uses D for flash or the summoner who uses F for flash. The data for our MySQL database came from the Black Market Brawlers dataset provided by Riot's API 2.0 challenge. If you don't care about individual champion perforamnce and desperately want to know if D or F is superior, click <%= link_to "here", overall_path %>!</div>
+	<div class="small-9 small-centered columns">This website is designed to show you which player is superior: The summoner who uses D for flash or the summoner who uses F for flash. The data for our MySQL database came from the Black Market Brawlers dataset provided by Riot's API 2.0 challenge. If you don't care about individual champion performance and desperately want to know if D or F is superior, <%= link_to "CLICK HERE!", overall_path, class: "overallLink" %></div>
 </div>
 
 <br /> <br/>
 
-<!-- add all the chapmpions with their pictures -->
+<!-- add all the champions with their pictures -->
 <div id="champsDiv" class="row">
 	<h3 id="champsTitle">Click on a champion to find out their flash stats!</h3>
 	<div id="champs">
-		<% arr = ["Patrick", "Sandy", "Spongebob", "SquarePants", "Mr. Krabs", "Squidward", "David Hasslehoff", "Flying Dutchman", "Krabby Patty", "Plankton"] %>
 		<% @champions.each do |champion| %>
 		<span class="champ">
-			<!-- <a href="#" class="champPic" style="display: block">
-				<img src="<%= @riot_path + champion.img %>"/></a> -->
 			<%= link_to(image_tag(@riot_path + champion.img), champion_show_path(champion)) %>
 			<%= link_to champion.name, champion_show_path(champion), { :class=>"champName" }  %>
 		</span>

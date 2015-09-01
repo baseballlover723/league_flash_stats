@@ -23,6 +23,9 @@ Resources used to build the project:
 * MySQL
 
 * Heroku
+= Fun Fact
+Our website is run through Heroku, which supports both HTTP and HTTPS. If you would like to see the amazing and awesome weather widget we built, run the page as HTTP. The weather API we use doesn't support HTTPS.
+---
 
 = WHY WE MADE THIS
 If you're a League of Legends player, you might have wondered whether using the D or F key for flash is better. This has been a debate in League of Legends since the beginning, and it's time we find out the truth. 

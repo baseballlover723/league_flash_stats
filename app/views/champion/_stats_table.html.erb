@@ -11,25 +11,31 @@
   </thead>
   <tbody>
   <tr>
-    <td>D</td>
-    <td class="dGamesOverall">0</td>
-    <td class="dWinsOverall">0</td>
-    <td class="dLossesOverall">0</td>
-    <td class="dPercentOverall">0</td>
+    <td class="d">D</td>
+    <% games = (data['flash_on_d'].wins + data['flash_on_d'].losses) if data %>
+    <td class="d dGamesOverall"><%= games || 0 %></td>
+    <td class="d dWinsOverall"><%= data ? data['flash_on_d'].wins : 0 %></td>
+    <td class="d dLossesOverall"><%= data ? data['flash_on_d'].losses : 0 %></td>
+    <% percent = data ? data['flash_on_d'].wins * 100 / games.to_f : 0.00 %>
+    <td class="d dPercentOverall"><%= percent.round(2) %></td>
   </tr>
   <tr>
-    <td>F</td>
-    <td class="fGamesOverall">0</td>
-    <td class="fWinsOverall">0</td>
-    <td class="fLossesOverall">0</td>
-    <td class="fPercentOverall">0</td>
+    <td class="f">F</td>
+    <% games = (data['flash_on_f'].wins + data['flash_on_f'].losses) if data %>
+    <td class="f fGamesOverall"><%= games || 0 %></td>
+    <td class="f fWinsOverall"><%= data ? data['flash_on_f'].wins : 0 %></td>
+    <td class="f fLossesOverall"><%= data ? data['flash_on_f'].losses : 0 %></td>
+    <% percent = data ? data['flash_on_f'].wins * 100 / games.to_f : 0.00 %>
+    <td class="f fPercentOverall"><%= percent.round(2) %></td>
   </tr>
   <tr>
-    <td>No Flash</td>
-    <td class="nGamesOverall">0</td>
-    <td class="nWinsOverall">0</td>
-    <td class="nLossesOverall">0</td>
-    <td class="nPercentOverall">0</td>
+    <td class="n">No Flash</td>
+    <% games = (data['no_flash'].wins + data['no_flash'].losses) if data %>
+    <td class="n nGamesOverall"><%= games || 0 %></td>
+    <td class="n nWinsOverall"><%= data ? data['no_flash'].wins : 0 %></td>
+    <td class="n nLossesOverall"><%= data ? data['no_flash'].losses : 0 %></td>
+    <% percent = data ? data['no_flash'].wins * 100 / games.to_f : 0.00 %>
+    <td class="n nPercentOverall"><%= percent.round(2) %></td>
   </tr>
   </tbody>
 </table>

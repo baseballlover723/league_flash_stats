@@ -8,6 +8,12 @@
 
 <br /><br />
 
+<div class="row" style="text-align:center;">
+  <h3>Click on a rank to see detailed information!</h3>
+</div>
+
+<br />
+
 <div class="row" id="checkDiv">
   <span class="check">
     <input type="checkbox" name="rank" value="unranked" onchange="getCheckedCheckboxesFor('callback');">
@@ -42,7 +48,7 @@
     <label for="rank">Challenger</label>
   </span>
   <span class="check">
-    <input type="checkbox" name="all" value="all" onchange="checkedAll();">
+    <input id="allRanksCheckbox" type="checkbox" name="all" value="all" onchange="checkedAll();">
     <label for="all">All Ranks</label>
   </span>
 </div>
@@ -55,14 +61,6 @@
  <%= javascript_tag "var botData = #{@buckets['bot'].to_json}" %>
  <%= javascript_tag "var jungleData = #{@buckets['jungle'].to_json}" %>
 
-
-<div class="row" id="chartDiv">
-  <!-- <canvas id="chart"></canvas> -->
-  <!-- <canvas id="chart2"></canvas> -->
-</div>
-
-<br /><br />
-
 <div class='row' id="overallWrapper">
   <div class="chartWrapper" style="display: inline-block">
     <h3>Wins by Lane</h3>
@@ -71,7 +69,7 @@
       <h4 class="disposable">No Data</h4>
     </div>
   </div>
-  <%= render partial: "stats_table", locals: {lane: "overall", data: @buckets.flatten} %>
+  <%= render partial: "stats_table", locals: {lane: "overall", data: nil} %>
   <div class="chartWrapper" style="display: inline-block">
     <h3>Losses by Lane</h3>
     <div id="chart2Holder">
@@ -86,24 +84,24 @@
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "top", data: @buckets["top"]} %>
+          <%= render partial: "stats_table", locals: {lane: "top", data: nil} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "jungle", data: @buckets["jungle"]} %>
+          <%= render partial: "stats_table", locals: {lane: "jungle", data: nil} %>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "mid", data: @buckets["mid"]} %>
+          <%= render partial: "stats_table", locals: {lane: "mid", data: nil} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "bot", data: @buckets["bot"]} %>
+          <%= render partial: "stats_table", locals: {lane: "bot", data: nil} %>
         </div>
       </td>
     </tr>

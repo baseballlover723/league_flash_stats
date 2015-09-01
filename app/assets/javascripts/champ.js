@@ -1,4 +1,5 @@
 var winChart, lossChart;
+
 var chartOptions = {
   //Boolean - Whether we should show a stroke on each segment
   segmentShowStroke : true,
@@ -25,96 +26,135 @@ var chartOptions = {
   animateScale : false,
 
   //String - A legend template
-  legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+  legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
 
 };
 
 $( document ).ready(function() {
-    console.log( "ready!" );
-    
-    function showPosition(position) {
-        getWeather(position.coords.latitude, position.coords.longitude);
-    }
+  var helpers = Chart.helpers;
+  // console.log( "ready!" );
 
-    function getLocation()
-    {
-        if (navigator.geolocation)
-        {
-            if(document.getElementById("currentTemp"))
-            {
-                console.log("already there");
-            }
-            else
-            {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            }
-        }
-        else
-        {
-            alert("Geolocation is not supported by this browser. Will not be able to display weather widget.");
-        }
-    }
+  if(window.location.protocol == "http:"){
+    getLocation();
+  }
+  
+  function showPosition(position) {
+      getWeather(position.coords.latitude, position.coords.longitude);
+  }
 
-    var startingData1 = [
-        {
-            value: 50,
-            color:"#F7464A",
-            highlight: "pink",
-            label: "Top"
-        },
-        {
-            value: 50,
-            color: "#46BFBD",
-            highlight: "pink",
-            label: "Jungle"
-        },
-        {
-            value: 50,
-            color: "#FDB45C",
-            highlight: "pink",
-            label: "Mid"
-        },
-        {
-            value: 50,
-            color: "purple",
-            highlight: "pink",
-            label: "Bot"
-        }
-    ];
+  function getLocation()
+  {
+      if (navigator.geolocation)
+      {
+          if(document.getElementById("currentTemp"))
+          {
+              // console.log("already there");
+          }
+          else
+          {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          }
+      }
+      else
+      {
+          alert("Geolocation is not supported by this browser. Will not be able to display weather widget.");
+      }
+  }
 
-    var startingData2 = [
-        {
-            value: 50,
-            color:"#F7464A",
-            highlight: "pink",
-            label: "Top"
-        },
-        {
-            value: 50,
-            color: "#46BFBD",
-            highlight: "pink",
-            label: "Jungle"
-        },
-        {
-            value: 50,
-            color: "#FDB45C",
-            highlight: "pink",
-            label: "Mid"
-        },
-        {
-            value: 50,
-            color: "purple",
-            highlight: "pink",
-            label: "Bot"
-        }
-    ];
+  var startingData1 = [
+      {
+          value: 50,
+          color:"#F7464A",
+          highlight: "pink",
+          label: "Top"
+      },
+      {
+          value: 50,
+          color: "#46BFBD",
+          highlight: "pink",
+          label: "Jungle"
+      },
+      {
+          value: 50,
+          color: "#FDB45C",
+          highlight: "pink",
+          label: "Mid"
+      },
+      {
+          value: 50,
+          color: "purple",
+          highlight: "pink",
+          label: "Bot"
+      }
+  ];
+
+  var startingData2 = [
+      {
+          value: 50,
+          color:"#F7464A",
+          highlight: "pink",
+          label: "Top"
+      },
+      {
+          value: 50,
+          color: "#46BFBD",
+          highlight: "pink",
+          label: "Jungle"
+      },
+      {
+          value: 50,
+          color: "#FDB45C",
+          highlight: "pink",
+          label: "Mid"
+      },
+      {
+          value: 50,
+          color: "purple",
+          highlight: "pink",
+          label: "Bot"
+      }
+  ];
 
 
-    var ctx = document.getElementById("chart").getContext("2d");
-    winChart = new Chart(ctx).Doughnut(startingData1, chartOptions);
+  var ctx = document.getElementById("chart").getContext("2d");
+  winChart = new Chart(ctx).Doughnut(startingData1, chartOptions);
+  var legendHolder = document.createElement("div");
+  legendHolder.innerHTML = winChart.generateLegend();
+  helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+    legendNode.style.backgroundColor = winChart.segments[index].fillColor;
+      helpers.addEvent(legendNode, 'mouseover', function () {
+          var activeSegment = winChart.segments[index];
+          activeSegment.save();
+          winChart.showTooltip([activeSegment]);
+          activeSegment.restore();
+      });
+  });
+  helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+      winChart.draw();
+  });
+  winChart.chart.canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
 
-    var ctx2 = document.getElementById("chart2").getContext("2d");
-    lossChart = new Chart(ctx2).Doughnut(startingData2, chartOptions);
+  var ctx2 = document.getElementById("chart2").getContext("2d");
+  lossChart = new Chart(ctx2).Doughnut(startingData2, chartOptions);
+  var legendHolder2 = document.createElement("div");
+  legendHolder2.innerHTML = lossChart.generateLegend();
+  helpers.each(legendHolder2.firstChild.childNodes, function (legendNode, index) {
+    legendNode.style.backgroundColor = lossChart.segments[index].fillColor;
+      helpers.addEvent(legendNode, 'mouseover', function () {
+          var activeSegment = lossChart.segments[index];
+          // console.log('activeSegment');
+          activeSegment.save();
+          lossChart.showTooltip([activeSegment]);
+          activeSegment.restore();
+      });
+  });
+  helpers.addEvent(legendHolder2.firstChild, 'mouseout', function () {
+      lossChart.draw();
+  });
+  lossChart.chart.canvas.parentNode.parentNode.appendChild(legendHolder2.firstChild);
+
+  //automatically select all ranks
+  $('#allRanksCheckbox').click();
 });
  
 function getCheckedCheckboxesFor(callback) {
@@ -149,27 +189,59 @@ function checkedAll(callback){
 }
 
 function populateTables(ranks, callback){
+  resetColors();
+
+  var zero = 0;
   //overall
   var releventOverallData = getRank(overallData.flash_on_d, ranks);
   $('#overall .dGamesOverall').html(releventOverallData.games);
   $('#overall .dWinsOverall').html(releventOverallData.wins);
   $('#overall .dLossesOverall').html(releventOverallData.losses);
-  var percent = (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2);
-  $('#overall .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  var percent = parseFloat(isNaN((releventOverallData.wins * 100 / releventOverallData.games).toFixed(2)) ? zero.toFixed(2) : (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2));
+  $('#overall .dPercentOverall').html(percent);
 
   releventOverallData = getRank(overallData.flash_on_f, ranks);
   $('#overall .fGamesOverall').html(releventOverallData.games);
   $('#overall .fWinsOverall').html(releventOverallData.wins);
   $('#overall .fLossesOverall').html(releventOverallData.losses);
-  percent = (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2);
-  $('#overall .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  var percent2 = parseFloat(isNaN((releventOverallData.wins * 100 / releventOverallData.games).toFixed(2)) ? zero.toFixed(2) : (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2));
+  $('#overall .fPercentOverall').html(percent2);
 
   releventOverallData = getRank(overallData.no_flash, ranks);
   $('#overall .nGamesOverall').html(releventOverallData.games);
   $('#overall .nWinsOverall').html(releventOverallData.wins);
   $('#overall .nLossesOverall').html(releventOverallData.losses);
-  percent = (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2);
-  $('#overall .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  var percent3 = parseFloat(isNaN((releventOverallData.wins * 100 / releventOverallData.games).toFixed(2)) ? zero.toFixed(2) : (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2));
+  $('#overall .nPercentOverall').html(percent3);
+
+  if(percent == percent2 && percent2 == percent3){
+    //all equal
+    $('#overall .dPercentOverall').css("background-color", "#00B2EE");
+    $('#overall .fPercentOverall').css("background-color", "#00B2EE");
+    $('#overall .nPercentOverall').css("background-color", "#00B2EE");
+  }
+  else if(percent > percent2){
+    //percent1 > percent2
+    if(percent > percent3){
+      //percent1 is the biggest
+      $('#overall .dPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the biggest
+      $('#overall .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
+  else{
+    //percent2 > percent3
+    if(percent2 > percent3){
+      //percent2 is the biggest
+      $('#overall .fPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the bigggest
+      $('#overall .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
 
   //top
   var releventTopData = getRank(topData.flash_on_d, ranks);
@@ -178,8 +250,8 @@ function populateTables(ranks, callback){
   $('#top .dGamesOverall').html(releventTopData.games);
   $('#top .dWinsOverall').html(releventTopData.wins);
   $('#top .dLossesOverall').html(releventTopData.losses);
-  percent = (releventTopData.wins * 100 / releventTopData.games).toFixed(2);
-  $('#top .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent = parseFloat(isNaN((releventTopData.wins * 100 / releventTopData.games).toFixed(2)) ? zero.toFixed(2) : (releventTopData.wins * 100 / releventTopData.games).toFixed(2));
+  $('#top .dPercentOverall').html(percent);
   topWins += releventTopData.wins;
   topLosses += releventTopData.losses;
 
@@ -187,8 +259,8 @@ function populateTables(ranks, callback){
   $('#top .fGamesOverall').html(releventTopData.games);
   $('#top .fWinsOverall').html(releventTopData.wins);
   $('#top .fLossesOverall').html(releventTopData.losses);
-  percent = (releventTopData.wins * 100 / releventTopData.games).toFixed(2);
-  $('#top .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent2 = parseFloat(isNaN((releventTopData.wins * 100 / releventTopData.games).toFixed(2)) ? zero.toFixed(2) : (releventTopData.wins * 100 / releventTopData.games).toFixed(2));
+  $('#top .fPercentOverall').html(percent2);
   topWins += releventTopData.wins;
   topLosses += releventTopData.losses;
 
@@ -196,10 +268,39 @@ function populateTables(ranks, callback){
   $('#top .nGamesOverall').html(releventTopData.games);
   $('#top .nWinsOverall').html(releventTopData.wins);
   $('#top .nLossesOverall').html(releventTopData.losses);
-  percent = (releventTopData.wins * 100 / releventTopData.games).toFixed(2);
-  $('#top .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent3 = parseFloat(isNaN((releventTopData.wins * 100 / releventTopData.games).toFixed(2)) ? zero.toFixed(2) : (releventTopData.wins * 100 / releventTopData.games).toFixed(2));
+  $('#top .nPercentOverall').html(percent3);
   topWins += releventTopData.wins;
   topLosses += releventTopData.losses;
+
+  if(percent == percent2 && percent2 == percent3){
+    //all equal
+    $('#top .dPercentOverall').css("background-color", "#00B2EE");
+    $('#top .fPercentOverall').css("background-color", "#00B2EE");
+    $('#top .nPercentOverall').css("background-color", "#00B2EE");
+  }
+  else if(percent > percent2){
+    //percent1 > percent2
+    if(percent > percent3){
+      //percent1 is the biggest
+      $('#top .dPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the biggest
+      $('#top .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
+  else{
+    //percent2 > percent3
+    if(percent2 > percent3){
+      //percent2 is the biggest
+      $('#top .fPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the bigggest
+      $('#top .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
 
   //jungle
   var releventJungleData = getRank(jungleData.flash_on_d, ranks);
@@ -208,8 +309,8 @@ function populateTables(ranks, callback){
   $('#jungle .dGamesOverall').html(releventJungleData.games);
   $('#jungle .dWinsOverall').html(releventJungleData.wins);
   $('#jungle .dLossesOverall').html(releventJungleData.losses);
-  percent = (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2);
-  $('#jungle .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent = parseFloat(isNaN((releventJungleData.wins * 100 / releventJungleData.games).toFixed(2)) ? zero.toFixed(2) : (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2));
+  $('#jungle .dPercentOverall').html(percent);
   jungleWins += releventJungleData.wins;
   jungleLosses += releventJungleData.losses;
 
@@ -217,8 +318,8 @@ function populateTables(ranks, callback){
   $('#jungle .fGamesOverall').html(releventJungleData.games);
   $('#jungle .fWinsOverall').html(releventJungleData.wins);
   $('#jungle .fLossesOverall').html(releventJungleData.losses);
-  percent = (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2);
-  $('#jungle .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent2 = parseFloat(isNaN((releventJungleData.wins * 100 / releventJungleData.games).toFixed(2)) ? zero.toFixed(2) : (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2));
+  $('#jungle .fPercentOverall').html(percent2);
   jungleWins += releventJungleData.wins;
   jungleLosses += releventJungleData.losses;
 
@@ -226,10 +327,39 @@ function populateTables(ranks, callback){
   $('#jungle .nGamesOverall').html(releventJungleData.games);
   $('#jungle .nWinsOverall').html(releventJungleData.wins);
   $('#jungle .nLossesOverall').html(releventJungleData.losses);
-  percent = (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2);
-  $('#jungle .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent3 = parseFloat(isNaN((releventJungleData.wins * 100 / releventJungleData.games).toFixed(2)) ? zero.toFixed(2) : (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2));
+  $('#jungle .nPercentOverall').html(percent3);
   jungleWins += releventJungleData.wins;
   jungleLosses += releventJungleData.losses;
+
+  if(percent == percent2 && percent2 == percent3){
+    //all equal
+    $('#jungle .dPercentOverall').css("background-color", "#00B2EE");
+    $('#jungle .fPercentOverall').css("background-color", "#00B2EE");
+    $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
+  }
+  else if(percent > percent2){
+    //percent1 > percent2
+    if(percent > percent3){
+      //percent1 is the biggest
+      $('#jungle .dPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the biggest
+      $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
+  else{
+    //percent2 > percent3
+    if(percent2 > percent3){
+      //percent2 is the biggest
+      $('#jungle .fPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the bigggest
+      $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
 
   //middle
   var releventMidData = getRank(midData.flash_on_d, ranks);
@@ -240,8 +370,8 @@ function populateTables(ranks, callback){
   $('#mid .dGamesOverall').html(releventMidData.games);
   $('#mid .dWinsOverall').html(releventMidData.wins);
   $('#mid .dLossesOverall').html(releventMidData.losses);
-  percent = (releventMidData.wins * 100 / releventMidData.games).toFixed(2);
-  $('#mid .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent = parseFloat(isNaN((releventMidData.wins * 100 / releventMidData.games).toFixed(2)) ? zero.toFixed(2) : (releventMidData.wins * 100 / releventMidData.games).toFixed(2));
+  $('#mid .dPercentOverall').html(percent);
   midWins += releventMidData.wins;
   midLosses += releventMidData.losses;
 
@@ -249,8 +379,8 @@ function populateTables(ranks, callback){
   $('#mid .fGamesOverall').html(releventMidData.games);
   $('#mid .fWinsOverall').html(releventMidData.wins);
   $('#mid .fLossesOverall').html(releventMidData.losses);
-  percent = (releventMidData.wins * 100 / releventMidData.games).toFixed(2);
-  $('#mid .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent2 = parseFloat(isNaN((releventMidData.wins * 100 / releventMidData.games).toFixed(2)) ? zero.toFixed(2) : (releventMidData.wins * 100 / releventMidData.games).toFixed(2));
+  $('#mid .fPercentOverall').html(percent2);
   midWins += releventMidData.wins;
   midLosses += releventMidData.losses;
 
@@ -258,10 +388,39 @@ function populateTables(ranks, callback){
   $('#mid .nGamesOverall').html(releventMidData.games);
   $('#mid .nWinsOverall').html(releventMidData.wins);
   $('#mid .nLossesOverall').html(releventMidData.losses);
-  percent = (releventMidData.wins * 100 / releventMidData.games).toFixed(2);
-  $('#mid .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent3 = parseFloat(isNaN((releventMidData.wins * 100 / releventMidData.games).toFixed(2)) ? zero.toFixed(2) : (releventMidData.wins * 100 / releventMidData.games).toFixed(2));
+  $('#mid .nPercentOverall').html(percent3);
   midWins += releventMidData.wins;
   midLosses += releventMidData.losses;
+
+  if(percent == percent2 && percent2 == percent3){
+    //all equal
+    $('#mid .dPercentOverall').css("background-color", "#00B2EE");
+    $('#mid .fPercentOverall').css("background-color", "#00B2EE");
+    $('#mid .nPercentOverall').css("background-color", "#00B2EE");
+  }
+  else if(percent > percent2){
+    //percent1 > percent2
+    if(percent > percent3){
+      //percent1 is the biggest
+      $('#mid .dPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the biggest
+      $('#mid .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
+  else{
+    //percent2 > percent3
+    if(percent2 > percent3){
+      //percent2 is the biggest
+      $('#mid .fPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the bigggest
+      $('#mid .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
 
   //bot
   var releventBotData = getRank(botData.flash_on_d, ranks);
@@ -270,8 +429,8 @@ function populateTables(ranks, callback){
   $('#bot .dGamesOverall').html(releventBotData.games);
   $('#bot .dWinsOverall').html(releventBotData.wins);
   $('#bot .dLossesOverall').html(releventBotData.losses);
-  percent = (releventBotData.wins * 100 / releventBotData.games).toFixed(2);
-  $('#bot .dPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent = parseFloat(isNaN((releventBotData.wins * 100 / releventBotData.games).toFixed(2)) ? zero.toFixed(2) : (releventBotData.wins * 100 / releventBotData.games).toFixed(2));
+  $('#bot .dPercentOverall').html(percent);
   botWins += releventBotData.wins;
   botLosses += releventBotData.losses;
 
@@ -279,8 +438,8 @@ function populateTables(ranks, callback){
   $('#bot .fGamesOverall').html(releventBotData.games);
   $('#bot .fWinsOverall').html(releventBotData.wins);
   $('#bot .fLossesOverall').html(releventBotData.losses);
-  percent = (releventBotData.wins * 100 / releventBotData.games).toFixed(2);
-  $('#bot .fPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent2 = parseFloat(isNaN((releventBotData.wins * 100 / releventBotData.games).toFixed(2)) ? zero.toFixed(2) : (releventBotData.wins * 100 / releventBotData.games).toFixed(2));
+  $('#bot .fPercentOverall').html(percent2);
   botWins += releventBotData.wins;
   botLosses += releventBotData.losses;
 
@@ -288,14 +447,56 @@ function populateTables(ranks, callback){
   $('#bot .nGamesOverall').html(releventBotData.games);
   $('#bot .nWinsOverall').html(releventBotData.wins);
   $('#bot .nLossesOverall').html(releventBotData.losses);
-  percent = (releventBotData.wins * 100 / releventBotData.games).toFixed(2);
-  $('#bot .nPercentOverall').html(isNaN(percent) ? 0 : percent);
+  percent3 = parseFloat(isNaN((releventBotData.wins * 100 / releventBotData.games).toFixed(2)) ? zero.toFixed(2) : (releventBotData.wins * 100 / releventBotData.games).toFixed(2));
+  $('#bot .nPercentOverall').html(percent3);
   botWins += releventBotData.wins;
   botLosses += releventBotData.losses;
+
+  if(percent == percent2 && percent2 == percent3){
+    //all equal
+    $('#bot .dPercentOverall').css("background-color", "#00B2EE");
+    $('#bot .fPercentOverall').css("background-color", "#00B2EE");
+    $('#bot .nPercentOverall').css("background-color", "#00B2EE");
+  }
+  else if(percent > percent2){
+    //percent1 > percent2
+    if(percent > percent3){
+      //percent1 is the biggest
+      $('#bot .dPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the biggest
+      $('#bot .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
+  else{
+    //percent2 > percent3
+    if(percent2 > percent3){
+      //percent2 is the biggest
+      $('#bot .fPercentOverall').css("background-color", "#00B2EE");
+    }
+    else{
+      //percent3 is the bigggest
+      $('#bot .nPercentOverall').css("background-color", "#00B2EE");
+    }
+  }
 
   deleteDisposables();
   updateChart(topWins, jungleWins, midWins, botWins, true);
   updateChart(topLosses, jungleLosses, midLosses, botLosses, false);
+}
+
+function resetColors(){
+  // console.log("reset colors");
+  var dRow = document.getElementsByClassName("d");
+  var fRow = document.getElementsByClassName("f");
+  var nRow = document.getElementsByClassName("n");
+
+  for(var i=0; i< dRow.length; i++){
+    dRow[i].style.backgroundColor = "#fff";
+    fRow[i].style.backgroundColor = "#f9f9f9";
+    nRow[i].style.backgroundColor = "#fff";
+  }
 }
 
 function deleteDisposables(){
@@ -358,7 +559,7 @@ function getRank(buckets, ranks){
 
 //get weather information from the openweathermap api and display it with a widget
 function getWeather(latitude, longitude){
-    console.log('getting weather');
+    // console.log('getting weather');
   var weather = {};
   $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude,
@@ -395,8 +596,13 @@ function toTitleCase(str){
 }
 
 function makeWeatherWidget(weather){
-  var weatherArea = document.getElementById('weatherArea');
-  weatherArea.style.height = "220px";
+  var weatherArea = document.createElement('div');
+  weatherArea.id = 'weatherArea';
+  weatherArea.style.height = "240px";
+
+  var header = document.createElement("h3");
+  header.innerHTML = "Should You Play League With This Weather?";
+  weatherArea.appendChild(header);
 
 
   var currentTemperature = document.createElement("span");
@@ -471,4 +677,13 @@ function makeWeatherWidget(weather){
   description.style.textAlign = "center";
   weatherArea.appendChild(description);
 
+  var hint = document.createElement("div");
+  hint.innerHTML = "Hint: It's always great weather to play league in.";
+  hint.style.fontSize = "12px";
+  hint.style.textAlign = "center";
+  hint.style.height = "15px";
+  hint.style.marginTop = "105px";
+  weatherArea.appendChild(hint);
+
+  document.getElementById("weatherWrapper").appendChild(weatherArea);
 }

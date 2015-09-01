@@ -71,6 +71,13 @@ h1{
   	text-align: center;
 }
 
+.rift{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+}
+
 #picture h1{
 	margin: 0;
 	color: #00B2EE;
@@ -132,7 +139,7 @@ h1{
 	text-align: center;
 }
 
-.champName:hover{
+a:hover{
 	color: purple;
 }
 
@@ -160,6 +167,7 @@ h1{
   	border-width: medium;
  	border-color: #00B2EE;
  	display: inline-block;
+ 	background-color: #e0e0e0;
 }
 
 #weatherArea h3{
@@ -198,14 +206,29 @@ h1{
 
 #chart{
 	display: inline-block;
-	width: 305px;
+	width: 95%;
 	vertical-align: middle;
+	margin-bottom: 5px;
 }
 
 #chart2{
 	display: inline-block;
-	width: 305px;
+	width: 95%;
 	vertical-align: middle;
+	margin-bottom: 5px;
+}
+
+.doughnut-legend{
+	display: inline-block;
+	list-style-type: none;
+	color: #f9f9f9;
+}
+
+.doughnut-legend li{
+	display: inline;
+	width: 50px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .caption{
@@ -217,11 +240,11 @@ h1{
 }
 
 #overall{
-	background-color: #f9f9f9;
 	display: inline-block;
 	margin-left: auto;
 	margin-right: auto;
 	vertical-align: middle;
+	width: 37%;
 }
 
 .chartWrapper {
@@ -250,4 +273,40 @@ td{
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.d .n{
+	background-color: white;
+}
+
+.f{
+	background-color: #e0e0e0;
+}
+
+#riftWrapper {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+#riftInsideWrapper {
+	display: inline-block;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+}
+
+.rift {
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+}
+
+.overallDescription {
+	text-align: center;
+	width: 70%;
+	float: right;
+	vertical-align: middle;
+	padding-top: 64.5px;
 }

@@ -1,28 +1,56 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Authors: Philip Ross and Andrew Ma
 
-Things you may want to cover:
+Resources used to build the project:
 
-* Ruby version
+* Ruby version 2.1.5
 
-* System dependencies
+* Rails 4.2.4
 
-* Configuration
+* JavaScript
 
-* Database creation
+* jQuery
 
-* Database initialization
+* Chart.js
 
-* How to run the test suite
+* Foundation 5
 
-* Services (job queues, cache servers, search engines, etc.)
+* HTML5
 
-* Deployment instructions
+* CSS3
 
-* ...
+* MySQL
 
+* Heroku
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+= WHY WE MADE THIS
+If you're a League of Legends player, you might have wondered whether using the D or F key for flash is better. This has been a debate in League of Legends since the beginning, and it's time we find out the truth. 
+
+The D or F? website is designed to show you which player is superior: The summoner who uses D for flash or the summoner who uses F for flash. 
+
+---
+
+= HOW WE MADE THIS
+=== MySQL Database
+The data for our MySQL database came from the Black Market Brawlers dataset provided by Riot's API 2.0 challenge. We used our API_KEYS from Riot Games (https://developer.riotgames.com/) to go through the Black Market matchIDs and push that data to our MySQL database.
+
+=== Foundation
+The website is styled using Foundation's grid styling system. Foundation allows for a lot of flexibility in terms of web design. We like the ease of use and the simplicity.
+
+=== JavaScript/Ruby
+The charts are generated with the help of an open source project called "Chart.js" (http://www.chartjs.org/). We used JavaScript for the dynamic changes in the HTML pages (specific champion pages), and Ruby for the static pages (all the other pages). We built the tables from scratch. Ruby was the server language of choice because of the simplicity and how easy the project was to setup.
+
+=== Weather Widget
+The silly weather widget we added at the bottom of the home page is thanks to Open Weather Map (http://openweathermap.org/api). They allow you gather weather data for free for any latitude and longitude. We only used the free service though, so the weather widget will only be displayed on http: protocols. The premium api features for Open Weather Map allow for https: protocols. Our JavaScript code checks to see whether or not the user is on a http: protocol with:
+
+  if(window.location.protocol == "http:"){
+    getLocation();
+  }
+where getLocation() starts the creation of the weather widget. This is a totally for fun widget, which always tells the user that no matter the weather, it's always a nice day to play League of Legends.
+
+=== Heroku
+The website is hosted and deployed thorugh a service called Heroku (https://www.heroku.com/). This service easily allowed us to host the website and database for free.
+
+=== Pictures
+The non-Riot made pictures used in our website were created by Andrew Ma and MS Paint.

@@ -30,7 +30,7 @@ var chartOptions = {
 
 };
 
-document.onload = function(){
+window.onload = function(){
   var helpers = Chart.helpers;
   // console.log( "ready!" );
 

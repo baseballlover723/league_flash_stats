@@ -14,299 +14,302 @@
  *= require_self
  */
 
- *{
- 	margin: 0;
- }
-
-html{
-	min-height: 100%;
+* {
+    margin: 0;
 }
 
-body{
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	background: #f9f9f9;
-	min-height: 100%;
+html {
+    min-height: 100%;
 }
 
-h1{
-	display: block;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background: #f9f9f9;
+    min-height: 100%;
 }
 
-::selection{
-	background: purple;
-	color: white;
+h1 {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
-#nav{
-	background: #00B2EE;
+::selection {
+    background: purple;
+    color: white;
 }
 
-#nav li{
-	background: #00B2EE;
+#nav {
+    background: #00B2EE;
 }
 
-#nav a{
-	background: #00B2EE;
+#nav li {
+    background: #00B2EE;
 }
 
-
-#jumbo{
-	width: 100%;
-	background-color: black;
+#nav a {
+    background: #00B2EE;
 }
 
-#picture{
-	background-color: black;
-	width: 760px;
-	height: 460px;
-	background-image: url("/assets/images/newFinger.png");
-	background-repeat: no-repeat;
-  	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
-  	text-align: center;
+#jumbo {
+    width: 100%;
+    background-color: black;
 }
 
-.rift{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 30%;
-}
-
-#picture h1{
-	margin: 0;
-	color: #00B2EE;
-	text-shadow: 1px 1px 12px #000000;
-}
-
-#twokinds{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#wrapper{
-	min-height: 100%;
-	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
-	height: 100%;
-}
-
-.push{
-	height: 48px;
-}
-
-#champsDiv{
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	background-color: #e0e0e0;
-}
-
-#champsDiv h3{
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-}
-
-#champsTitle{
-	display: block;
-	text-align: center;
-	color: #00B2EE;
-}
-
-#champs{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-.champ{
-	width: "50px";
-	display: inline-block;
-	margin-bottom: 10px;
-}
-
-.champPic{
-	width: 100px;
-}
-
-
-.champName{
-	display: block;
-	width: 100%;
-	text-align: center;
-}
-
-a:hover{
-	color: purple;
-}
-
-#footer{
-	height: 48px;
-	width: 100%;
-	background-color: #00B2EE;
-	position: absolute;
-	bottom: 0;
-}
-
-#foot{
-	color: white;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 12px;
-	bottom: 0;
-}
-
-#weatherArea{
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-  	width: 100%;
-  	border-style: solid;
-  	border-width: medium;
- 	border-color: #00B2EE;
- 	display: inline-block;
- 	background-color: #e0e0e0;
-}
-
-#weatherArea h3{
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	text-align: center;
-}
-
-#greatDay{
-	color: #32cd32;
-}
-
-.splash{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	height: 300px;
-}
-
-#checkDiv{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-.check{
-	display: inline-block;
-}
-
-#chartDiv{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-#chart{
-	display: inline-block;
-	width: 95%;
-	vertical-align: middle;
-	margin-bottom: 5px;
-}
-
-#chart2{
-	display: inline-block;
-	width: 95%;
-	vertical-align: middle;
-	margin-bottom: 5px;
-}
-
-.doughnut-legend{
-	display: inline-block;
-	list-style-type: none;
-	color: #f9f9f9;
-}
-
-.doughnut-legend li{
-	display: inline;
-	width: 50px;
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.caption{
-	text-transform: capitalize;
-}
-
-#overallWrapper{
-	text-align: center;
-}
-
-#overall{
-	display: inline-block;
-	margin-left: auto;
-	margin-right: auto;
-	vertical-align: middle;
-	width: 37%;
-}
-
-.chartWrapper {
-	vertical-align: middle;
-	margin-bottom: 15px;
-}
-
-h4 {
-	margin-bottom: 0px;
-}
-.tables{
-	display: inline-block;
-	text-align: center;
-}
-
-tr{
-	text-align: center;
-}
-
-td{
-	text-align: center;
-}
-
-.tableWrapper {
-	display: inline-block;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.d .n{
-	background-color: white;
-}
-
-.f{
-	background-color: #e0e0e0;
-}
-
-#riftWrapper {
-	display: block;
-	text-align: center;
-	width: 100%;
-}
-
-#riftInsideWrapper {
-	display: inline-block;
-	width: 75%;
-	margin-left: auto;
-	margin-right: auto;
-	vertical-align: middle;
+#picture {
+    background-color: black;
+    width: 760px;
+    height: 460px;
+    background-image: url("/assets/images/newFinger.png");
+    background-repeat: no-repeat;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .rift {
-	display: inline-block;
-	float: left;
-	vertical-align: middle;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+#picture h1 {
+    margin: 0;
+    color: #00B2EE;
+    text-shadow: 1px 1px 12px #000000;
+}
+
+#twokinds {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
+}
+
+.push {
+    height: 48px;
+}
+
+#champsDiv {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background-color: #e0e0e0;
+}
+
+#champsDiv h3 {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#champsTitle {
+    display: block;
+    text-align: center;
+    color: #00B2EE;
+}
+
+#champs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.champ {
+    width: "50px";
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.champPic {
+    width: 100px;
+}
+
+.champName {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+a:hover {
+    color: purple;
+}
+
+#footer {
+    height: 48px;
+    width: 100%;
+    background-color: #00B2EE;
+    position: absolute;
+    bottom: 0;
+}
+
+#foot {
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    bottom: 0;
+}
+
+#weatherArea {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    width: 100%;
+    border-style: solid;
+    border-width: medium;
+    border-color: #00B2EE;
+    display: inline-block;
+    background-color: #e0e0e0;
+}
+
+#weatherArea h3 {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+}
+
+#greatDay {
+    color: #32cd32;
+}
+
+.splash {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+}
+
+#checkDiv {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.check {
+    display: inline-block;
+}
+
+#chartDiv {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#chart {
+    display: inline-block;
+    width: 95%;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+#chart2 {
+    display: inline-block;
+    width: 95%;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+.doughnut-legend {
+    display: inline-block;
+    list-style-type: none;
+    color: #f9f9f9;
+}
+
+.doughnut-legend li {
+    display: inline;
+    width: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.caption {
+    text-transform: capitalize;
+}
+
+#overallWrapper {
+    text-align: center;
+}
+
+#overall {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    width: 37%;
+}
+
+.chartWrapper {
+    vertical-align: middle;
+    margin-bottom: 15px;
+}
+
+h4 {
+    margin-bottom: 0px;
+}
+
+.tables {
+    display: inline-block;
+    text-align: center;
+}
+
+tr {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.tableWrapper {
+    display: inline-block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.d .n {
+    background-color: white;
+}
+
+.f {
+    background-color: #e0e0e0;
+}
+
+#riftWrapper {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+#riftInsideWrapper {
+    display: inline-block;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+
+.rift {
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
 }
 
 .overallDescription {
-	text-align: center;
-	width: 70%;
-	float: right;
-	vertical-align: middle;
-	padding-top: 64.5px;
+    text-align: center;
+    width: 70%;
+    float: right;
+    vertical-align: middle;
+    padding-top: 64.5px;
+}
+
+.winner {
+    background-color: #00B2EE
 }

@@ -31,6 +31,11 @@ The D or F? website is designed to show you which player is superior: The summon
 
 ---
 
+= Gangplank
+If you notice, the champion, Gangplank, has no data. This is due to the fact that Gangplank was disabled during the Blcak Market Brawlers, proving that the data we used to populate our database is indeed from the API 2.0 challenge.
+
+---
+
 = HOW WE MADE THIS
 === MySQL Database
 The data for our MySQL database came from the Black Market Brawlers dataset provided by Riot's API 2.0 challenge. We used our API_KEYS from Riot Games (https://developer.riotgames.com/) to go through the Black Market matchIDs and push that data to our MySQL database.

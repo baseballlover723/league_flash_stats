@@ -1,4 +1,5 @@
 == README
+https://league-flash-stats.herokuapp.com/
 
 Authors: Philip Ross and Andrew Ma
 
@@ -24,7 +25,7 @@ Resources used to build the project:
 
 * Heroku
 = Fun Fact
-Our website is run through Heroku, which supports both HTTP and HTTPS. If you would like to see the amazing and awesome weather widget we built, run the page as HTTP. The weather API we use doesn't support HTTPS.
+Our website (https://league-flash-stats.herokuapp.com/) is run through Heroku, which supports both HTTP and HTTPS. If you would like to see the amazing and awesome weather widget we built, run the page as HTTP. The weather API we use doesn't support HTTPS.
 ---
 
 = WHY WE MADE THIS

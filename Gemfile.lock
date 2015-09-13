@@ -166,7 +166,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2
+  mysql2 (~> 0.3.18)
   quiet_assets
   rails (= 4.2.4)
   ruby-json

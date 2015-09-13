@@ -318,3 +318,7 @@ td {
     font-size: 18pt;
     font-weight: bold;
 }
+
+.donate-button {
+    line-height: 45px;
+}

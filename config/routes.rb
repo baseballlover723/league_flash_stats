@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'error/mysql'
+
   get 'admin/', to: 'admin#index', as: :admin_index
   post 'admin/', to: 'admin#start_stop_polling', as: :start_stop_polling
   put 'admin/', to: 'admin#reset_index', as: :reset_index

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'error/mysql'
+  get 'thanks', to: 'donation#thanks', as: :donation_thanks
 
   get 'admin/', to: 'admin#index', as: :admin_index
   post 'admin/', to: 'admin#start_stop_polling', as: :start_stop_polling
@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/overall', to: 'champion#overall', as: :overall
   get '/:id', to: 'champion#show', as: :champion_show
 
+  get 'error/mysql'
 end

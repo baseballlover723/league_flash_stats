@@ -322,3 +322,12 @@ td {
 .donate-button {
     line-height: 45px;
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-text {
+    text-align: center;
+}

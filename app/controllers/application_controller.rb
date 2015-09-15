@@ -7,12 +7,6 @@ class ApplicationController < ActionController::Base
     mysql_error exception
   end
 
-  rescue_from ActiveRecord::ActiveRecordError do |exception|
-    puts "Active record error"
-    mysql_error exception
-  end
-
-
   def mysql_error(expection)
     puts expection.inspect
     render 'error/mysql'

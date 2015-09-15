@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root to: "champion#index"
+
+  get 'contact-us', to: 'feedback#new', as: :feedbacks
+  post 'contact-us', to: 'feedback#create'
+
   get 'thanks', to: 'donation#thanks', as: :donation_thanks
 
   get 'admin/', to: 'admin#index', as: :admin_index

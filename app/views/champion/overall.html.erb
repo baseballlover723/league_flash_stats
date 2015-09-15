@@ -11,6 +11,44 @@
 
 <br /><br />
 
+<div class="row" id="checkDiv">
+  <span class="check">
+    <input type="checkbox" name="rank" value="unranked" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Unranked</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="bronze" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Bronze</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="silver" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Silver</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="gold" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Gold</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="platinum" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Platinum</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="diamond" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Diamond</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="master" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Master</label>
+  </span>
+  <span class="check">
+    <input type="checkbox" name="rank" value="challenger" onchange="getCheckedCheckboxesFor('callback');">
+    <label for="rank">Challenger</label>
+  </span>
+  <span class="check">
+    <input id="allRanksCheckbox" type="checkbox" name="all" value="all" onchange="checkedAll();">
+    <label for="all">All Ranks</label>
+  </span>
+</div>
 
 <%= javascript_tag "var obj = #{@buckets.to_json}" %>
 <%= javascript_tag "var overallData = #{@buckets['overall'].to_json}" %>

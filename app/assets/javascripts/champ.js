@@ -186,6 +186,7 @@ function checkedAll(callback) {
 }
 
 function populateTables(ranks, callback) {
+    console.log("populating tables");
     resetColors();
 
     var zero = 0;
@@ -213,30 +214,31 @@ function populateTables(ranks, callback) {
 
     if (percent == percent2 && percent2 == percent3) {
         //all equal
-        $('#overall .dPercentOverall').css("background-color", "#00B2EE");
-        $('#overall .fPercentOverall').css("background-color", "#00B2EE");
-        $('#overall .nPercentOverall').css("background-color", "#00B2EE");
+        console.log($('#overall .dPercentOverall'));
+        $('#overall .dPercentOverall').addClass("winner");
+        $('#overall .fPercentOverall').addClass("winner");
+        $('#overall .nPercentOverall').addClass("winner");
     }
     else if (percent > percent2) {
         //percent1 > percent2
         if (percent > percent3) {
             //percent1 is the biggest
-            $('#overall .dPercentOverall').css("background-color", "#00B2EE");
+            $('#overall .dPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the biggest
-            $('#overall .nPercentOverall').css("background-color", "#00B2EE");
+            $('#overall .nPercentOverall').addClass("winner");
         }
     }
     else {
         //percent2 > percent3
         if (percent2 > percent3) {
             //percent2 is the biggest
-            $('#overall .fPercentOverall').css("background-color", "#00B2EE");
+            $('#overall .fPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the bigggest
-            $('#overall .nPercentOverall').css("background-color", "#00B2EE");
+            $('#overall .nPercentOverall').addClass("winner");
         }
     }
 
@@ -272,30 +274,30 @@ function populateTables(ranks, callback) {
 
     if (percent == percent2 && percent2 == percent3) {
         //all equal
-        $('#top .dPercentOverall').css("background-color", "#00B2EE");
-        $('#top .fPercentOverall').css("background-color", "#00B2EE");
-        $('#top .nPercentOverall').css("background-color", "#00B2EE");
+        $('#top .dPercentOverall').addClass("winner");
+        $('#top .fPercentOverall').addClass("winner");
+        $('#top .nPercentOverall').addClass("winner");
     }
     else if (percent > percent2) {
         //percent1 > percent2
         if (percent > percent3) {
             //percent1 is the biggest
-            $('#top .dPercentOverall').css("background-color", "#00B2EE");
+            $('#top .dPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the biggest
-            $('#top .nPercentOverall').css("background-color", "#00B2EE");
+            $('#top .nPercentOverall').addClass("winner");
         }
     }
     else {
         //percent2 > percent3
         if (percent2 > percent3) {
             //percent2 is the biggest
-            $('#top .fPercentOverall').css("background-color", "#00B2EE");
+            $('#top .fPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the bigggest
-            $('#top .nPercentOverall').css("background-color", "#00B2EE");
+            $('#top .nPercentOverall').addClass("winner");
         }
     }
 
@@ -331,30 +333,30 @@ function populateTables(ranks, callback) {
 
     if (percent == percent2 && percent2 == percent3) {
         //all equal
-        $('#jungle .dPercentOverall').css("background-color", "#00B2EE");
-        $('#jungle .fPercentOverall').css("background-color", "#00B2EE");
-        $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
+        $('#jungle .dPercentOverall').addClass("winner");
+        $('#jungle .fPercentOverall').addClass("winner");
+        $('#jungle .nPercentOverall').addClass("winner");
     }
     else if (percent > percent2) {
         //percent1 > percent2
         if (percent > percent3) {
             //percent1 is the biggest
-            $('#jungle .dPercentOverall').css("background-color", "#00B2EE");
+            $('#jungle .dPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the biggest
-            $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
+            $('#jungle .nPercentOverall').addClass("winner");
         }
     }
     else {
         //percent2 > percent3
         if (percent2 > percent3) {
             //percent2 is the biggest
-            $('#jungle .fPercentOverall').css("background-color", "#00B2EE");
+            $('#jungle .fPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the bigggest
-            $('#jungle .nPercentOverall').css("background-color", "#00B2EE");
+            $('#jungle .nPercentOverall').addClass("winner");
         }
     }
 
@@ -392,30 +394,30 @@ function populateTables(ranks, callback) {
 
     if (percent == percent2 && percent2 == percent3) {
         //all equal
-        $('#mid .dPercentOverall').css("background-color", "#00B2EE");
-        $('#mid .fPercentOverall').css("background-color", "#00B2EE");
-        $('#mid .nPercentOverall').css("background-color", "#00B2EE");
+        $('#mid .dPercentOverall').addClass("winner");
+        $('#mid .fPercentOverall').addClass("winner");
+        $('#mid .nPercentOverall').addClass("winner");
     }
     else if (percent > percent2) {
         //percent1 > percent2
         if (percent > percent3) {
             //percent1 is the biggest
-            $('#mid .dPercentOverall').css("background-color", "#00B2EE");
+            $('#mid .dPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the biggest
-            $('#mid .nPercentOverall').css("background-color", "#00B2EE");
+            $('#mid .nPercentOverall').addClass("winner");
         }
     }
     else {
         //percent2 > percent3
         if (percent2 > percent3) {
             //percent2 is the biggest
-            $('#mid .fPercentOverall').css("background-color", "#00B2EE");
+            $('#mid .fPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the bigggest
-            $('#mid .nPercentOverall').css("background-color", "#00B2EE");
+            $('#mid .nPercentOverall').addClass("winner");
         }
     }
 
@@ -451,30 +453,30 @@ function populateTables(ranks, callback) {
 
     if (percent == percent2 && percent2 == percent3) {
         //all equal
-        $('#bot .dPercentOverall').css("background-color", "#00B2EE");
-        $('#bot .fPercentOverall').css("background-color", "#00B2EE");
-        $('#bot .nPercentOverall').css("background-color", "#00B2EE");
+        $('#bot .dPercentOverall').addClass("winner");
+        $('#bot .fPercentOverall').addClass("winner");
+        $('#bot .nPercentOverall').addClass("winner");
     }
     else if (percent > percent2) {
         //percent1 > percent2
         if (percent > percent3) {
             //percent1 is the biggest
-            $('#bot .dPercentOverall').css("background-color", "#00B2EE");
+            $('#bot .dPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the biggest
-            $('#bot .nPercentOverall').css("background-color", "#00B2EE");
+            $('#bot .nPercentOverall').addClass("winner");
         }
     }
     else {
         //percent2 > percent3
         if (percent2 > percent3) {
             //percent2 is the biggest
-            $('#bot .fPercentOverall').css("background-color", "#00B2EE");
+            $('#bot .fPercentOverall').addClass("winner");
         }
         else {
             //percent3 is the bigggest
-            $('#bot .nPercentOverall').css("background-color", "#00B2EE");
+            $('#bot .nPercentOverall').addClass("winner");
         }
     }
 
@@ -486,16 +488,11 @@ function populateTables(ranks, callback) {
 }
 
 function resetColors() {
-     //console.log("reset colors");
-    var dRow = document.getElementsByClassName("d");
-    var fRow = document.getElementsByClassName("f");
-    var nRow = document.getElementsByClassName("n");
-
-    for (var i = 0; i < dRow.length; i++) {
-        dRow[i].style.backgroundColor = "#fff";
-        fRow[i].style.backgroundColor = "#f9f9f9";
-        nRow[i].style.backgroundColor = "#fff";
-    }
+    console.log("reset colors");
+    var cells = $(".dPercentOverall, .fPercentOverall, .nPercentOverall");
+    cells.each(function(i) {
+       $(this).removeClass("winner");
+    });
 }
 
 function deleteDisposables() {
@@ -506,7 +503,7 @@ function deleteDisposables() {
 }
 
 function updateChart(top, jungle, mid, bot, isWinChart) {
-
+    console.log("update chart");
     if (isWinChart) {
         if (top == 0 && jungle == 0 && mid == 0 && bot == 0) {
             var noData = document.createElement("h4");

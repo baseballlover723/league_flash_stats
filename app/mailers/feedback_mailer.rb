@@ -1,5 +1,5 @@
-class FeedbackMailer < ApplicationMailer
-  @@our_email = "league-flash-stats@gmail.com"
+class FeedbackMailer < ActionMailer::Base
+@@our_email = "league-flash-stats@gmail.com"
 
   def feedback_email(feedback)
     @name = feedback.name

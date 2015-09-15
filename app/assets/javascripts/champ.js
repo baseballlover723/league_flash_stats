@@ -186,309 +186,88 @@ function checkedAll(callback) {
 }
 
 function populateTables(ranks, callback) {
-    console.log("populating tables");
+    //console.log("populating tables");
     resetColors();
 
-    var zero = 0;
-    //overall
-    var releventOverallData = getRank(overallData.flash_on_d, ranks);
-    $('#overall .dGamesOverall').html(releventOverallData.games);
-    $('#overall .dWinsOverall').html(releventOverallData.wins);
-    $('#overall .dLossesOverall').html(releventOverallData.losses);
-    var percent = parseFloat(isNaN((releventOverallData.wins * 100 / releventOverallData.games).toFixed(2)) ? zero.toFixed(2) : (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2));
-    $('#overall .dPercentOverall').html(percent);
-
-    releventOverallData = getRank(overallData.flash_on_f, ranks);
-    $('#overall .fGamesOverall').html(releventOverallData.games);
-    $('#overall .fWinsOverall').html(releventOverallData.wins);
-    $('#overall .fLossesOverall').html(releventOverallData.losses);
-    var percent2 = parseFloat(isNaN((releventOverallData.wins * 100 / releventOverallData.games).toFixed(2)) ? zero.toFixed(2) : (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2));
-    $('#overall .fPercentOverall').html(percent2);
-
-    releventOverallData = getRank(overallData.no_flash, ranks);
-    $('#overall .nGamesOverall').html(releventOverallData.games);
-    $('#overall .nWinsOverall').html(releventOverallData.wins);
-    $('#overall .nLossesOverall').html(releventOverallData.losses);
-    var percent3 = parseFloat(isNaN((releventOverallData.wins * 100 / releventOverallData.games).toFixed(2)) ? zero.toFixed(2) : (releventOverallData.wins * 100 / releventOverallData.games).toFixed(2));
-    $('#overall .nPercentOverall').html(percent3);
-
-    if (percent == percent2 && percent2 == percent3) {
-        //all equal
-        console.log($('#overall .dPercentOverall'));
-        $('#overall .dPercentOverall').addClass("winner");
-        $('#overall .fPercentOverall').addClass("winner");
-        $('#overall .nPercentOverall').addClass("winner");
-    }
-    else if (percent > percent2) {
-        //percent1 > percent2
-        if (percent > percent3) {
-            //percent1 is the biggest
-            $('#overall .dPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the biggest
-            $('#overall .nPercentOverall').addClass("winner");
-        }
-    }
-    else {
-        //percent2 > percent3
-        if (percent2 > percent3) {
-            //percent2 is the biggest
-            $('#overall .fPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the bigggest
-            $('#overall .nPercentOverall').addClass("winner");
-        }
-    }
-
-    //top
-    var releventTopData = getRank(topData.flash_on_d, ranks);
-    var topWins = 0;
-    var topLosses = 0;
-    $('#top .dGamesOverall').html(releventTopData.games);
-    $('#top .dWinsOverall').html(releventTopData.wins);
-    $('#top .dLossesOverall').html(releventTopData.losses);
-    percent = parseFloat(isNaN((releventTopData.wins * 100 / releventTopData.games).toFixed(2)) ? zero.toFixed(2) : (releventTopData.wins * 100 / releventTopData.games).toFixed(2));
-    $('#top .dPercentOverall').html(percent);
-    topWins += releventTopData.wins;
-    topLosses += releventTopData.losses;
-
-    releventTopData = getRank(topData.flash_on_f, ranks);
-    $('#top .fGamesOverall').html(releventTopData.games);
-    $('#top .fWinsOverall').html(releventTopData.wins);
-    $('#top .fLossesOverall').html(releventTopData.losses);
-    percent2 = parseFloat(isNaN((releventTopData.wins * 100 / releventTopData.games).toFixed(2)) ? zero.toFixed(2) : (releventTopData.wins * 100 / releventTopData.games).toFixed(2));
-    $('#top .fPercentOverall').html(percent2);
-    topWins += releventTopData.wins;
-    topLosses += releventTopData.losses;
-
-    releventTopData = getRank(topData.no_flash, ranks);
-    $('#top .nGamesOverall').html(releventTopData.games);
-    $('#top .nWinsOverall').html(releventTopData.wins);
-    $('#top .nLossesOverall').html(releventTopData.losses);
-    percent3 = parseFloat(isNaN((releventTopData.wins * 100 / releventTopData.games).toFixed(2)) ? zero.toFixed(2) : (releventTopData.wins * 100 / releventTopData.games).toFixed(2));
-    $('#top .nPercentOverall').html(percent3);
-    topWins += releventTopData.wins;
-    topLosses += releventTopData.losses;
-
-    if (percent == percent2 && percent2 == percent3) {
-        //all equal
-        $('#top .dPercentOverall').addClass("winner");
-        $('#top .fPercentOverall').addClass("winner");
-        $('#top .nPercentOverall').addClass("winner");
-    }
-    else if (percent > percent2) {
-        //percent1 > percent2
-        if (percent > percent3) {
-            //percent1 is the biggest
-            $('#top .dPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the biggest
-            $('#top .nPercentOverall').addClass("winner");
-        }
-    }
-    else {
-        //percent2 > percent3
-        if (percent2 > percent3) {
-            //percent2 is the biggest
-            $('#top .fPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the bigggest
-            $('#top .nPercentOverall').addClass("winner");
-        }
-    }
-
-    //jungle
-    var releventJungleData = getRank(jungleData.flash_on_d, ranks);
-    var jungleWins = 0;
-    var jungleLosses = 0;
-    $('#jungle .dGamesOverall').html(releventJungleData.games);
-    $('#jungle .dWinsOverall').html(releventJungleData.wins);
-    $('#jungle .dLossesOverall').html(releventJungleData.losses);
-    percent = parseFloat(isNaN((releventJungleData.wins * 100 / releventJungleData.games).toFixed(2)) ? zero.toFixed(2) : (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2));
-    $('#jungle .dPercentOverall').html(percent);
-    jungleWins += releventJungleData.wins;
-    jungleLosses += releventJungleData.losses;
-
-    releventJungleData = getRank(jungleData.flash_on_f, ranks);
-    $('#jungle .fGamesOverall').html(releventJungleData.games);
-    $('#jungle .fWinsOverall').html(releventJungleData.wins);
-    $('#jungle .fLossesOverall').html(releventJungleData.losses);
-    percent2 = parseFloat(isNaN((releventJungleData.wins * 100 / releventJungleData.games).toFixed(2)) ? zero.toFixed(2) : (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2));
-    $('#jungle .fPercentOverall').html(percent2);
-    jungleWins += releventJungleData.wins;
-    jungleLosses += releventJungleData.losses;
-
-    releventJungleData = getRank(jungleData.no_flash, ranks);
-    $('#jungle .nGamesOverall').html(releventJungleData.games);
-    $('#jungle .nWinsOverall').html(releventJungleData.wins);
-    $('#jungle .nLossesOverall').html(releventJungleData.losses);
-    percent3 = parseFloat(isNaN((releventJungleData.wins * 100 / releventJungleData.games).toFixed(2)) ? zero.toFixed(2) : (releventJungleData.wins * 100 / releventJungleData.games).toFixed(2));
-    $('#jungle .nPercentOverall').html(percent3);
-    jungleWins += releventJungleData.wins;
-    jungleLosses += releventJungleData.losses;
-
-    if (percent == percent2 && percent2 == percent3) {
-        //all equal
-        $('#jungle .dPercentOverall').addClass("winner");
-        $('#jungle .fPercentOverall').addClass("winner");
-        $('#jungle .nPercentOverall').addClass("winner");
-    }
-    else if (percent > percent2) {
-        //percent1 > percent2
-        if (percent > percent3) {
-            //percent1 is the biggest
-            $('#jungle .dPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the biggest
-            $('#jungle .nPercentOverall').addClass("winner");
-        }
-    }
-    else {
-        //percent2 > percent3
-        if (percent2 > percent3) {
-            //percent2 is the biggest
-            $('#jungle .fPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the bigggest
-            $('#jungle .nPercentOverall').addClass("winner");
-        }
-    }
-
-    //middle
-    var releventMidData = getRank(midData.flash_on_d, ranks);
-    var midWins = 0;
-    var midLosses = 0;
-
-    // TOOD put this in methods
-    $('#mid .dGamesOverall').html(releventMidData.games);
-    $('#mid .dWinsOverall').html(releventMidData.wins);
-    $('#mid .dLossesOverall').html(releventMidData.losses);
-    percent = parseFloat(isNaN((releventMidData.wins * 100 / releventMidData.games).toFixed(2)) ? zero.toFixed(2) : (releventMidData.wins * 100 / releventMidData.games).toFixed(2));
-    $('#mid .dPercentOverall').html(percent);
-    midWins += releventMidData.wins;
-    midLosses += releventMidData.losses;
-
-    releventMidData = getRank(midData.flash_on_f, ranks);
-    $('#mid .fGamesOverall').html(releventMidData.games);
-    $('#mid .fWinsOverall').html(releventMidData.wins);
-    $('#mid .fLossesOverall').html(releventMidData.losses);
-    percent2 = parseFloat(isNaN((releventMidData.wins * 100 / releventMidData.games).toFixed(2)) ? zero.toFixed(2) : (releventMidData.wins * 100 / releventMidData.games).toFixed(2));
-    $('#mid .fPercentOverall').html(percent2);
-    midWins += releventMidData.wins;
-    midLosses += releventMidData.losses;
-
-    releventMidData = getRank(midData.no_flash, ranks);
-    $('#mid .nGamesOverall').html(releventMidData.games);
-    $('#mid .nWinsOverall').html(releventMidData.wins);
-    $('#mid .nLossesOverall').html(releventMidData.losses);
-    percent3 = parseFloat(isNaN((releventMidData.wins * 100 / releventMidData.games).toFixed(2)) ? zero.toFixed(2) : (releventMidData.wins * 100 / releventMidData.games).toFixed(2));
-    $('#mid .nPercentOverall').html(percent3);
-    midWins += releventMidData.wins;
-    midLosses += releventMidData.losses;
-
-    if (percent == percent2 && percent2 == percent3) {
-        //all equal
-        $('#mid .dPercentOverall').addClass("winner");
-        $('#mid .fPercentOverall').addClass("winner");
-        $('#mid .nPercentOverall').addClass("winner");
-    }
-    else if (percent > percent2) {
-        //percent1 > percent2
-        if (percent > percent3) {
-            //percent1 is the biggest
-            $('#mid .dPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the biggest
-            $('#mid .nPercentOverall').addClass("winner");
-        }
-    }
-    else {
-        //percent2 > percent3
-        if (percent2 > percent3) {
-            //percent2 is the biggest
-            $('#mid .fPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the bigggest
-            $('#mid .nPercentOverall').addClass("winner");
-        }
-    }
-
-    //bot
-    var releventBotData = getRank(botData.flash_on_d, ranks);
-    var botWins = 0;
-    var botLosses = 0;
-    $('#bot .dGamesOverall').html(releventBotData.games);
-    $('#bot .dWinsOverall').html(releventBotData.wins);
-    $('#bot .dLossesOverall').html(releventBotData.losses);
-    percent = parseFloat(isNaN((releventBotData.wins * 100 / releventBotData.games).toFixed(2)) ? zero.toFixed(2) : (releventBotData.wins * 100 / releventBotData.games).toFixed(2));
-    $('#bot .dPercentOverall').html(percent);
-    botWins += releventBotData.wins;
-    botLosses += releventBotData.losses;
-
-    releventBotData = getRank(botData.flash_on_f, ranks);
-    $('#bot .fGamesOverall').html(releventBotData.games);
-    $('#bot .fWinsOverall').html(releventBotData.wins);
-    $('#bot .fLossesOverall').html(releventBotData.losses);
-    percent2 = parseFloat(isNaN((releventBotData.wins * 100 / releventBotData.games).toFixed(2)) ? zero.toFixed(2) : (releventBotData.wins * 100 / releventBotData.games).toFixed(2));
-    $('#bot .fPercentOverall').html(percent2);
-    botWins += releventBotData.wins;
-    botLosses += releventBotData.losses;
-
-    releventBotData = getRank(botData.no_flash, ranks);
-    $('#bot .nGamesOverall').html(releventBotData.games);
-    $('#bot .nWinsOverall').html(releventBotData.wins);
-    $('#bot .nLossesOverall').html(releventBotData.losses);
-    percent3 = parseFloat(isNaN((releventBotData.wins * 100 / releventBotData.games).toFixed(2)) ? zero.toFixed(2) : (releventBotData.wins * 100 / releventBotData.games).toFixed(2));
-    $('#bot .nPercentOverall').html(percent3);
-    botWins += releventBotData.wins;
-    botLosses += releventBotData.losses;
-
-    if (percent == percent2 && percent2 == percent3) {
-        //all equal
-        $('#bot .dPercentOverall').addClass("winner");
-        $('#bot .fPercentOverall').addClass("winner");
-        $('#bot .nPercentOverall').addClass("winner");
-    }
-    else if (percent > percent2) {
-        //percent1 > percent2
-        if (percent > percent3) {
-            //percent1 is the biggest
-            $('#bot .dPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the biggest
-            $('#bot .nPercentOverall').addClass("winner");
-        }
-    }
-    else {
-        //percent2 > percent3
-        if (percent2 > percent3) {
-            //percent2 is the biggest
-            $('#bot .fPercentOverall').addClass("winner");
-        }
-        else {
-            //percent3 is the bigggest
-            $('#bot .nPercentOverall').addClass("winner");
-        }
-    }
+    populateTable("overall", overallData, ranks);
+    topWinsLosses = populateTable("top", topData, ranks);
+    midWinsLosses = populateTable("mid", midData, ranks);
+    botWinsLosses = populateTable("bot", botData, ranks);
+    jungleWinsLosses = populateTable("jungle", jungleData, ranks);
 
     deleteDisposables();
     if (has_charts) {
-        updateChart(topWins, jungleWins, midWins, botWins, true);
-        updateChart(topLosses, jungleLosses, midLosses, botLosses, false);
+        updateChart(topWinsLosses.wins, jungleWinsLosses.wins, midWinsLosses.wins, botWinsLosses.wins, true);
+        updateChart(topWinsLosses.losses, jungleWinsLosses.losses, midWinsLosses.losses, botWinsLosses.losses, false);
     }
 }
 
+
+function populateTable(lane, data, ranks) {
+    var zero = 0;
+    var wins = 0;
+    var losses = 0;
+
+    var releventData = getRank(data.flash_on_d, ranks);
+    $('#' + lane + ' .dGamesOverall').html(releventData.games);
+    $('#' + lane + ' .dWinsOverall').html(releventData.wins);
+    $('#' + lane + ' .dLossesOverall').html(releventData.losses);
+    var percent = parseFloat(isNaN((releventData.wins * 100 / releventData.games).toFixed(2)) ? zero.toFixed(2) : (releventData.wins * 100 / releventData.games).toFixed(2));
+    $('#' + lane + ' .dPercentOverall').html(percent);
+    wins += releventData.wins;
+    losses += releventData.losses;
+
+    releventData = getRank(data.flash_on_f, ranks);
+    $('#' + lane + ' .fGamesOverall').html(releventData.games);
+    $('#' + lane + ' .fWinsOverall').html(releventData.wins);
+    $('#' + lane + ' .fLossesOverall').html(releventData.losses);
+    var percent2 = parseFloat(isNaN((releventData.wins * 100 / releventData.games).toFixed(2)) ? zero.toFixed(2) : (releventData.wins * 100 / releventData.games).toFixed(2));
+    $('#' + lane + ' .fPercentOverall').html(percent2);
+    wins += releventData.wins;
+    losses += releventData.losses;
+
+    releventData = getRank(data.no_flash, ranks);
+    $('#' + lane + ' .nGamesOverall').html(releventData.games);
+    $('#' + lane + ' .nWinsOverall').html(releventData.wins);
+    $('#' + lane + ' .nLossesOverall').html(releventData.losses);
+    var percent3 = parseFloat(isNaN((releventData.wins * 100 / releventData.games).toFixed(2)) ? zero.toFixed(2) : (releventData.wins * 100 / releventData.games).toFixed(2));
+    $('#' + lane + ' .nPercentOverall').html(percent3);
+    wins += releventData.wins;
+    losses += releventData.losses;
+
+    if (percent == percent2 && percent2 == percent3) {
+        //all equal
+        $('#' + lane + ' .dPercentOverall').addClass("winner");
+        $('#' + lane + ' .fPercentOverall').addClass("winner");
+        $('#' + lane + ' .nPercentOverall').addClass("winner");
+    }
+    else if (percent > percent2) {
+        //percent1 > percent2
+        if (percent > percent3) {
+            //percent1 is the biggest
+            $('#' + lane + ' .dPercentOverall').addClass("winner");
+        }
+        else {
+            //percent3 is the biggest
+            $('#' + lane + ' .nPercentOverall').addClass("winner");
+        }
+    }
+    else {
+        //percent2 > percent3
+        if (percent2 > percent3) {
+            //percent2 is the biggest
+            $('#' + lane + ' .fPercentOverall').addClass("winner");
+        }
+        else {
+            //percent3 is the bigggest
+            $('#' + lane + ' .nPercentOverall').addClass("winner");
+        }
+    }
+    return {wins: wins, losses: losses};
+}
+
 function resetColors() {
-    console.log("reset colors");
+    //console.log("reset colors");
     var cells = $(".dPercentOverall, .fPercentOverall, .nPercentOverall");
     cells.each(function(i) {
        $(this).removeClass("winner");
@@ -503,7 +282,7 @@ function deleteDisposables() {
 }
 
 function updateChart(top, jungle, mid, bot, isWinChart) {
-    console.log("update chart");
+    //console.log("update chart");
     if (isWinChart) {
         if (top == 0 && jungle == 0 && mid == 0 && bot == 0) {
             var noData = document.createElement("h4");

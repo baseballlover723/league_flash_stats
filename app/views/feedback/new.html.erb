@@ -16,7 +16,7 @@
         <%= f.input :name, label: "Name (Required)", required: true, error: "Can not be blank" %>
         <%= f.input :from_email, label: "Email (Not Required)"%>
         <%= f.input :message, label: "Message (Required)", as: :text, required: true,
-                    input_html: {class: "textarea", cols: 96, rows: 10}, error: "Don't send us a blank message" %>
+                    input_html: {class: "textarea", rows: 10}, error: "Don't send us a blank message" %>
         <div class="hidden">
           <%= f.input :nickname, hint: 'Leave this field blank!' %>
         </div>

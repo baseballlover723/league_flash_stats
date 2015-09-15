@@ -58,31 +58,31 @@
 <%= javascript_tag "var jungleData = #{@buckets['jungle'].to_json}" %>
 
 <div class='row' id="overallWrapper">
-	<%= render partial: "stats_table", locals: {lane: "overall", data: @buckets["overall"]} %>
+	<%= render partial: "stats_table", locals: {lane: "overall"} %>
 </div>
 <div class='row'>
   <table style="width: 100%;">
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "top", data: @buckets["top"]} %>
+          <%= render partial: "stats_table", locals: {lane: "top"} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "jungle", data: @buckets["jungle"]} %>
+          <%= render partial: "stats_table", locals: {lane: "jungle"} %>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "mid", data: @buckets["mid"]} %>
+          <%= render partial: "stats_table", locals: {lane: "mid"} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "bot", data: @buckets["bot"]} %>
+          <%= render partial: "stats_table", locals: {lane: "bot"} %>
         </div>
       </td>
     </tr>

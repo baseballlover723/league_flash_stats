@@ -58,6 +58,18 @@ h1 {
     background-color: black;
 }
 
+#picture {
+    background-color: black;
+    width: 760px;
+    height: 460px;
+    background-image: url("/assets/images/newFinger.png");
+    background-repeat: no-repeat;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .rift {
     display: block;
     margin-left: auto;
@@ -75,6 +87,12 @@ h1 {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
 }
 
 .push {
@@ -124,10 +142,9 @@ a:hover {
 }
 
 #footer {
-    height: 54px;
+    height: 48px;
     width: 100%;
     background-color: #00B2EE;
-    position: absolute;
     bottom: 0;
 }
 
@@ -213,6 +230,7 @@ a:hover {
 
 .caption {
     text-transform: capitalize;
+    padding: 5px;
 }
 
 #overallWrapper {
@@ -224,7 +242,8 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     vertical-align: middle;
-    width: 37%;
+    /*width: 40%;*/
+    margin-top: 15px;
 }
 
 .chartWrapper {
@@ -300,3 +319,56 @@ td {
     font-size: 18pt;
     font-weight: bold;
 }
+
+.donate-button {
+    line-height: 45px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.textarea {
+    height: auto;
+}
+
+/*flash*/
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+}
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+}
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+}
+
+

@@ -1,6 +1,7 @@
 LANES = %w(top mid bot jungle)
 FLASH_STATES = %w(no_flash flash_on_f flash_on_d)
 RANKS = %w(unranked bronze silver gold platinum diamond master challenger)
+OVERALL_CACHE_TIME = 2.minutes
 
 class ChampionController < ApplicationController
   def show
@@ -34,8 +35,12 @@ class ChampionController < ApplicationController
   end
 
   def overall
+    @total_number_of_games = Rails.cache.fetch('number_of_games', expires_in: OVERALL_CACHE_TIME) do
+      total_rank = Rank.select("SUM(ranks.wins) AS wins, SUM(ranks.losses) AS losses")[0]
+      total_rank.wins + total_rank.losses
+    end
     flash_hash = {no_flash: [], flash_on_f: [], flash_on_d: []}.with_indifferent_access
-    @buckets = Rails.cache.fetch('buckets', expires_in: 2.minutes) do
+    @buckets = Rails.cache.fetch('buckets', expires_in: OVERALL_CACHE_TIME) do
       puts "fetching overall buckets"
       @buckets = {
           overall: flash_hash,

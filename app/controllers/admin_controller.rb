@@ -4,6 +4,7 @@ require 'concurrent'
 KEY_SLEEP = 2
 MATCH_COUNT_LIMIT = 2000
 MATCH_DATA = "BILGEWATER_DATASET/"
+CHAMPION_NAME_CACHE_TIME = 1.days
 
 class AdminController < ApplicationController
   http_basic_authenticate_with name: ENV["ADMIN_USERNAME"], password: ENV["ADMIN_PASSWORD"]

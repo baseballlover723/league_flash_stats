@@ -25,7 +25,7 @@
     The summoner who uses D for flash or the summoner who uses F for flash. The data for our MySQL database
     came from the Black Market Brawlers dataset provided by Riot's API 2.0 challenge. If you don't care about
     individual champion performance and desperately want to know if D or F is
-    superior, <%= link_to "CLICK HERE!", overall_path, class: "overallLink" %></div>
+    superior, <%= link_to "CLICK HERE!", overall_path, class: "overallLink", id: "overall-index-blurb-link" %></div>
 </div>
 
 <br/> <br/>
@@ -36,8 +36,8 @@
 
   <div id="champs">
     <% @champions.each do |champion| %>
-		<span class="champ">
-			<%= link_to(image_tag(@riot_path + champion.img), champion_show_path(champion)) %>
+		<span class="champ" id="<%= champion.name %>-link">
+			<%= link_to image_tag(@riot_path + champion.img), champion_show_path(champion) %>
           <%= link_to champion.name, champion_show_path(champion), {:class => "champName"} %>
 		</span>
     <% end %>

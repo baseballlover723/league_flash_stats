@@ -1,6 +1,8 @@
 == README
 https://league-flash-stats.herokuapp.com/
 
+Email us at leagueflashstats@gmail.com so that we can put the deploy the correct version of the app for the api challenge. We added a few things after the deadline.
+
 Authors: Philip Ross and Andrew Ma
 
 Resources used to build the project:

@@ -9,7 +9,7 @@ class FeedbackController < ApplicationController
   end
 
   def create
-    check_params = params.require(:feedback).permit([:name, :message, :from_email, :nickname])
+    check_params = params.require(:feedback).permit([:name, :message, :from_email, :spam])
     check_params[:from_email] = @@no_email unless check_params[:from_email].present?
     @feedback = Feedback.new(check_params)
 
@@ -36,7 +36,7 @@ class FeedbackController < ApplicationController
         render :new
       end
     else
-      flash.now[:alert] = @feedback.nickname ? "Please don't spam our email" : "Misconfiguered email. Double check that you entered in all the right values"
+      flash.now[:alert] = @feedback.spam ? "Please don't spam our email" : "Misconfiguered email. Double check that you entered in all the right values"
       render :new
     end
   end

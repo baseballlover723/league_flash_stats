@@ -1,3 +1,4 @@
+<% content_for :title, @champion.name %>
 <h1 id="championShowName"><%= @champion.name + " " + @champion.title %></h1>
 
 <br />
@@ -69,7 +70,7 @@
       <h4 class="disposable">No Data</h4>
     </div>
   </div>
-  <%= render partial: "stats_table", locals: {lane: "overall", data: nil} %>
+  <%= render partial: "stats_table", locals: {lane: "overall"} %>
   <div class="chartWrapper" style="display: inline-block">
     <h3>Losses by Lane</h3>
     <div id="chart2Holder">
@@ -84,24 +85,24 @@
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "top", data: nil} %>
+          <%= render partial: "stats_table", locals: {lane: "top"} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "jungle", data: nil} %>
+          <%= render partial: "stats_table", locals: {lane: "jungle"} %>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "mid", data: nil} %>
+          <%= render partial: "stats_table", locals: {lane: "mid"} %>
         </div>
       </td>
       <td>
         <div class="tableWrapper">
-          <%= render partial: "stats_table", locals: {lane: "bot", data: nil} %>
+          <%= render partial: "stats_table", locals: {lane: "bot"} %>
         </div>
       </td>
     </tr>

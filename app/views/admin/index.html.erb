@@ -2,7 +2,7 @@
 <p>Find me in app/views/admin/index.html.erb</p>
 
 <%= form_tag do %>
-  <%= submit_tag("#{@start_stop_string} Polling") %>
+    <%= submit_tag("#{@start_stop_string} Polling") %>
 <% end %>
 <h2>index = <%= @index %></h2>
 <h2>db is clean: <%= @is_db_clean %></h2>
@@ -15,3 +15,25 @@
     <%= text_field_tag(:region) %>
     <%= submit_tag "change region" %>
 <% end %>
+Most popular champions are:
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Games</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Win %</th>
+  </tr>
+
+  <% @most_popular_champion_ranks.each_with_index do |rank, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= get_champion_name rank.champion_id %></td>
+        <td><%= rank.wins + rank.losses %></td>
+        <td><%= rank.wins %></td>
+        <td><%= rank.losses %></td>
+        <td><%= (rank.wins * 100 / (rank.wins + rank.losses).to_f).round(2) %></td>
+      </tr>
+  <% end %>
+</table>

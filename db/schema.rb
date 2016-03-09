@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830194056) do
+ActiveRecord::Schema.define(version: 20150926003751) do
 
   create_table "champions", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20150830194056) do
     t.string   "loading_img", limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "from_email", limit: 255
+    t.string   "message",    limit: 255
+    t.string   "spam",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "last_match_indices", force: :cascade do |t|

@@ -1,6 +1,7 @@
 LANES = %w(top mid bot jungle)
 FLASH_STATES = %w(no_flash flash_on_f flash_on_d)
 RANKS = %w(unranked bronze silver gold platinum diamond master challenger)
+OVERALL_CACHE_TIME = 2.minutes
 
 class ChampionController < ApplicationController
   def show
@@ -34,41 +35,41 @@ class ChampionController < ApplicationController
   end
 
   def overall
+    @total_number_of_games = Rails.cache.fetch('number_of_games', expires_in: OVERALL_CACHE_TIME) do
+      total_rank = Rank.select("SUM(ranks.wins) AS wins, SUM(ranks.losses) AS losses")[0]
+      total_rank.wins + total_rank.losses
+    end
     flash_hash = {no_flash: [], flash_on_f: [], flash_on_d: []}.with_indifferent_access
-    @buckets = {
-        overall: {
-          no_flash: Rank.new(lane: "overall", wins: 0, losses: 0, has_flash: false, flash_on_f: false), 
-          flash_on_f: Rank.new(lane: "overall", wins: 0, losses: 0, has_flash: true, flash_on_f: true), 
-          flash_on_d: Rank.new(lane: "overall", wins: 0, losses: 0, has_flash: true, flash_on_f: false)},
-        top: flash_hash.deep_dup,
-        mid: flash_hash.deep_dup,
-        bot: flash_hash.deep_dup,
-        jungle: flash_hash.deep_dup
-    }.with_indifferent_access
+    @buckets = Rails.cache.fetch('buckets', expires_in: OVERALL_CACHE_TIME) do
+      puts "fetching overall buckets"
+      @buckets = {
+          overall: flash_hash,
+          top: flash_hash.deep_dup,
+          mid: flash_hash.deep_dup,
+          bot: flash_hash.deep_dup,
+          jungle: flash_hash.deep_dup
+      }.with_indifferent_access
 
-    LANES.each do |lane|
-      FLASH_STATES.each do |flash_state|
-        has_flash = true
-        flash_on_f = false
+      LANES.each do |lane|
+        FLASH_STATES.each do |flash_state|
+          has_flash = true
+          flash_on_f = false
 
-        if flash_state == "no_flash"
-          has_flash = false
-        elsif flash_state == "flash_on_f"
-          flash_on_f = true
+          if flash_state == "no_flash"
+            has_flash = false
+          elsif flash_state == "flash_on_f"
+            flash_on_f = true
+          end
+          # do ranks if we can
+          RANKS.each do |rank|
+            bucket = Rank.select("SUM(ranks.wins) AS wins, SUM(ranks.losses) AS losses, has_flash, flash_on_f, lane, rank").
+                where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f, rank: rank)[0]
+            @buckets[lane][flash_state] << bucket
+            @buckets["overall"][flash_state] << bucket
+          end
         end
-        # do ranks if we can
-        # RANKS.each do |rank|
-        # overall_rank = {lane: lane, has_flash: has_flash, flash_on_f: flash_on_f}.with_indifferent_access
-        # overall_rank["wins"] = Rank.where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f).sum("wins")
-        # overall_rank["losses"] = Rank.where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f).sum("losses")
-
-        overall_rank = Rank.select("SUM(ranks.wins) AS wins, SUM(ranks.losses) AS losses, has_flash, flash_on_f, lane").
-            where(lane: lane, has_flash: has_flash, flash_on_f: flash_on_f)[0]
-        @buckets[lane][flash_state] = overall_rank
-        @buckets["overall"][flash_state].wins += overall_rank.wins
-        @buckets["overall"][flash_state].losses += overall_rank.losses
-        # end
       end
+      @buckets
     end
   end
 end

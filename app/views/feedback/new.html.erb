@@ -1,0 +1,29 @@
+<div class="row">
+  <div align="center">
+    <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+            <br />
+            <div data-alert class="alert-box radius <%= name %>">
+              <a class="close" data-dismiss="alert">&times;</a>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+        <% end %>
+    <% end %>
+
+    <h3>Send A message to Us</h3>
+
+    <%= simple_form_for @feedback, wrapper: :horizontal_form do |f| %>
+        <%= f.input :name, label: "Name (Required)", required: true, error: "Can not be blank" %>
+        <%= f.input :from_email, label: "Email (Not Required)"%>
+        <%= f.input :message, label: "Message (Required)", as: :text, required: true,
+                    input_html: {class: "textarea", rows: 10}, error: "Don't send us a blank message" %>
+        <div class="hidden">
+          <%= f.input :spam, hint: 'Leave this field blank!' %>
+        </div>
+        <div>
+          </br>
+          <%= f.button :submit, 'Send message', class: "btn btn-primary" %>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -4,6 +4,7 @@ require 'concurrent'
 KEY_SLEEP = 2
 MATCH_COUNT_LIMIT = 2000
 MATCH_DATA = "BILGEWATER_DATASET/"
+CHAMPION_NAME_CACHE_TIME = 1.days
 
 class AdminController < ApplicationController
   http_basic_authenticate_with name: ENV["ADMIN_USERNAME"], password: ENV["ADMIN_PASSWORD"]
@@ -22,6 +23,20 @@ class AdminController < ApplicationController
     @index = @@index || get_last_match_id_index
     @file_path = MATCH_DATA + @@region_dataset.upcase + ".json"
     @start_stop_string = @@polling ? "Stop" : "Start"
+    @most_popular_champion_ranks = get_most_popular_champion_ranks
+  end
+
+  def get_most_popular_champion_ranks(top_number=Champion.all.length)
+    ranks = Rails.cache.fetch('popular_ranks', expires_in: 5.minutes) do
+      puts "recalculating most popular champions"
+      ranks = []
+      Champion.all.each do |champion|
+        rank = Rank.select("SUM(ranks.wins) AS wins, SUM(ranks.losses) AS losses, champion_id").where(champion: champion)[0]
+        ranks << rank
+      end
+      ranks.sort_by! { |rank| (rank[:wins] + rank[:losses]) * -1 }
+      ranks[0...top_number]
+    end
   end
 
   def reset_index
